@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ARDA_Stud_Manager — Онлайн Менеджер студентов</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <h1>ARDA_Stud_Manager</h1>
+  <p>Онлайн менеджер студентов, конкурсов, расписаний и характеристик</p>
+</header>
+
+<nav>
+  <button class="active" data-section="students">Менеджер студентов</button>
+  <button data-section="contests">Конкурсы</button>
+  <button data-section="plans">Планы / Расписание</button>
+  <button data-section="files">Менеджер файлов</button>
+  <button data-section="profile">Характеристики студента</button>
+</nav>
+
+<main>
+  <section id="students" class="active">
+    <h2>Менеджер студентов</h2>
+    <input type="text" id="studentName" placeholder="ФИО студента" />
+    <button onclick="addStudent()">Добавить студента</button>
+    <ul id="studentList"></ul>
+  </section>
+
+  <section id="contests">
+    <h2>Конкурсы</h2>
+    <p>Управление конкурсами пока в разработке.</p>
+  </section>
+
+  <section id="plans">
+    <h2>Планы / Расписание</h2>
+    <p>Здесь можно будет смотреть и редактировать учебные планы и расписание.</p>
+  </section>
+
+  <section id="files">
+    <h2>Менеджер файлов</h2>
+    <p>Загрузка и управление файлами будут здесь.</p>
+  </section>
+
+  <section id="profile">
+    <h2>Характеристики студента</h2>
+    <form id="profileForm">
+      <input type="text" id="fullName" placeholder="ФИО" required />
+      <input type="text" id="faculty" placeholder="Факультет" />
+      <input type="text" id="group" placeholder="Курс / Группа" />
+      <input type="text" id="parents" placeholder="ФИО родителей" />
+      <textarea id="extraInfo" placeholder="Дополнительная информация"></textarea>
+      <button type="submit">Сохранить</button>
+    </form>
+    <div id="profileResult"></div>
+  </section>
+</main>
+
+<footer>
+  © 2025 ARDA_Stud_Manager
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
