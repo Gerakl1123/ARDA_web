@@ -1,84 +1,93 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ARDA_Stud_Manager</title>
-  <style>
-    body {
-      max-width: 700px;
-      margin: 40px auto;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f4f8;
-      color: #222;
-      padding: 0 20px;
-      line-height: 1.6;
-    }
-    h1 {
-      color: #004080;
-      font-weight: 700;
-      margin-bottom: 0.1em;
-    }
-    p.description {
-      font-size: 1.1em;
-      color: #333;
-      margin-top: 0;
-      margin-bottom: 2em;
-    }
-    section {
-      background: #fff;
-      padding: 20px 25px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
-      margin-bottom: 30px;
-    }
-    section h2 {
-      margin-top: 0;
-      color: #0070c0;
-      border-bottom: 2px solid #0070c0;
-      padding-bottom: 6px;
-      margin-bottom: 15px;
-      font-weight: 600;
-    }
-    ul {
-      padding-left: 1.2em;
-      color: #444;
-    }
-    ul li {
-      margin-bottom: 8px;
-    }
-    pre {
-      background: #e8e8e8;
-      padding: 15px;
-      border-radius: 6px;
-      overflow-x: auto;
-      font-size: 0.9em;
-      color: #333;
-    }
-    a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    footer {
-      text-align: center;
-      color: #666;
-      margin-top: 40px;
-      font-size: 0.9em;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ARDA_Stud_Manager</title>
+<style>
+  body {
+    max-width: 700px;
+    margin: 40px auto;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f4f8;
+    color: #222;
+    padding: 0 20px;
+  }
+  h1 {
+    color: #004080;
+    font-weight: 700;
+    margin-bottom: 0.2em;
+  }
+  .btn-group {
+    margin-bottom: 30px;
+  }
+  button {
+    background-color: #0070c0;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+  }
+  button:hover {
+    background-color: #005999;
+  }
+  button.active {
+    background-color: #004080;
+  }
+  section {
+    background: white;
+    padding: 20px 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    margin-bottom: 20px;
+    display: none;
+  }
+  section.active {
+    display: block;
+  }
+  pre {
+    background: #e8e8e8;
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.9em;
+    color: #333;
+  }
+  a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
 </head>
 <body>
   <h1>📘 ARDA_Stud_Manager</h1>
-  <p class="description">
-    💡 Локальное кроссплатформенное Qt-приложение для управления студентами, группами, оценками и расписанием.<br />
-    <strong>C++ / Qt | Без базы данных | Все данные хранятся локально</strong>
-  </p>
+  <div class="btn-group">
+    <button data-target="overview" class="active">Обзор</button>
+    <button data-target="features">Возможности</button>
+    <button data-target="tech">Технологии</button>
+    <button data-target="install">Установка</button>
+    <button data-target="demo">Демонстрация</button>
+    <button data-target="development">В разработке</button>
+    <button data-target="updates">Обновления</button>
+    <button data-target="author">Автор</button>
+    <button data-target="bugs">Баги</button>
+    <button data-target="license">Лицензия</button>
+  </div>
 
-  <section>
-    <h2>🔧 Возможности</h2>
+  <section id="overview" class="active">
+    <p>💡 Локальное кроссплатформенное Qt-приложение для управления студентами, группами, оценками и расписанием.<br>
+    <strong>C++ / Qt | Без базы данных | Все данные хранятся локально</strong></p>
+  </section>
+
+  <section id="features">
     <ul>
       <li>👥 Учёт студентов, групп и преподавателей</li>
       <li>📅 Создание расписания и учебных модулей</li>
@@ -91,8 +100,7 @@
     </ul>
   </section>
 
-  <section>
-    <h2>🧱 Технологии</h2>
+  <section id="tech">
     <ul>
       <li>C++17</li>
       <li>Qt 5.15 / 6.x (Qt Widgets)</li>
@@ -101,8 +109,7 @@
     </ul>
   </section>
 
-  <section>
-    <h2>🚀 Установка и запуск</h2>
+  <section id="install">
     <pre><code>git clone https://github.com/Gerakl1123/ARDA_Stud_Manager
 cd ARDA_Stud_Manager
 mkdir build
@@ -113,14 +120,12 @@ make
     </code></pre>
   </section>
 
-  <section>
-    <h2>🎬 Демонстрация</h2>
+  <section id="demo">
     <p>Видео-демонстрации находятся в папке <code>ARDA/demo video/</code>.</p>
     <p>⚠️ Меню «Уроки», «Планы» и «Файловый менеджер» находятся в разработке.</p>
   </section>
 
-  <section>
-    <h2>🛠️ В разработке</h2>
+  <section id="development">
     <ul>
       <li>Добавление новых конкурсов</li>
       <li>Меню Планов, Уроков и Файловый менеджер</li>
@@ -128,34 +133,48 @@ make
     </ul>
   </section>
 
-  <section>
-    <h2>📅 Последние обновления</h2>
+  <section id="updates">
     <ul>
       <li>18.07.2025 — Добавлено 2 меню, рефакторинг UI, отделение логики от интерфейса</li>
       <li>24.07.2025 — Исправлен баг с добавлением и сортировкой студентов</li>
     </ul>
   </section>
 
-  <section>
-    <h2>👤 Автор</h2>
+  <section id="author">
     <p>
-      Gerakl1123<br />
+      Gerakl1123<br>
       GitHub: <a href="https://github.com/Gerakl1123" target="_blank" rel="noopener">https://github.com/Gerakl1123</a>
     </p>
   </section>
 
-  <section>
-    <h2>⚠️ Баги</h2>
+  <section id="bugs">
     <p>Баг №1: при добавлении большого числа студентов возникают ошибки. Фикс найден, скоро будет выложен.</p>
   </section>
 
-  <section>
-    <h2>🛡️ Лицензия</h2>
+  <section id="license">
     <p>Проект распространяется только для некоммерческого использования. <a href="LICENSE" target="_blank">См. LICENSE</a></p>
   </section>
 
-  <footer>
-    <p>© 2025 Gerakl1123</p>
-  </footer>
+<script>
+  const buttons = document.querySelectorAll(".btn-group button");
+  const sections = document.querySelectorAll("section");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const target = btn.getAttribute("data-target");
+      sections.forEach(section => {
+        if(section.id === target){
+          section.classList.add("active");
+        } else {
+          section.classList.remove("active");
+        }
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
