@@ -1,16 +1,102 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <title>Update Server</title>
-    <style>
-      body { font-family: Arial, sans-serif; padding: 2em; background: #f0f0f0; }
-      h1 { color: #333; }
-      pre { background: #fff; padding: 1em; border-radius: 5px; }
-    </style>
+  <meta charset="UTF-8">
+  <title>ARDA Student Manager</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    header { background-color: #4a90e2; color: white; padding: 20px; text-align: center; }
+    nav { background: #333; }
+    nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; }
+    nav li { margin: 0 15px; }
+    nav a { color: white; text-decoration: none; padding: 10px; display: block; }
+    nav a:hover { background: #555; }
+    section { padding: 20px; }
+    .download { text-align: center; margin: 20px 0; }
+    .download a {
+      background: #4a90e2; color: white; padding: 15px 25px;
+      text-decoration: none; border-radius: 5px;
+    }
+    .download a:hover { background: #357ABD; }
+    footer { text-align: center; padding: 10px; background: #f4f4f4; font-size: 0.9em; }
+  </style>
 </head>
 <body>
-    <h1>Сервер обновлений</h1>
-    <p>Для проверки обновлений обращайтесь к <code>/update.json</code></p>
+  <header>
+    <h1>ARDA Student Manager</h1>
+    <p>Учет студентов — локально или сетевым способом, с экспортом, печатью и файлами</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#about">О приложении</a></li>
+      <li><a href="#features">Функции</a></li>
+      <li><a href="#download">Скачать</a></li>
+      <li><a href="#readme">README</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+  </nav>
+
+  <section id="about">
+    <h2>О приложении</h2>
+    <p><strong>ARDA Student Manager</strong> — это приложение на C++/Qt, которое помогает вести учёт студентов локально или в сети. Позволяет добавлять, удалять, сортировать и находить студентов. Также содержит модули для конкурсного учёта (аттестаты, ЕГЭ для 9–11 классов), оценок, проектной деятельности, зачетов, курсовых и дипломов.</p>
+  </section>
+
+  <section id="features">
+    <h2>Основные функции</h2>
+    <ul>
+      <li>CRUD‑операции: добавление, удаление, редактирование, поиск студентов.</li>
+      <li>Сортировка и фильтрация данных.</li>
+      <li>Меню конкурсы: аттестаты и ЕГЭ (9–11 классы).</li>
+      <li>Учёт оценок: оценки, проектная деятельность, зачеты, курсовые, диплом.</li>
+      <li>Сохранение в JSON + выгрузка.</li>
+      <li>Отображение данных в таблицах.</li>
+      <li>Сериализация в реестр Windows.</li>
+      <li>Печать в PDF, формат A4.</li>
+      <li>В разработке: файловый менеджер (создание директорий и т.п.) и админ‑панель.</li>
+    </ul>
+  </section>
+
+  <div class="download" id="download">
+    <a href="https://github.com/Gerakl1123/ARDA_Stud_Manager/releases">Скачать последнюю версию</a>
+  </div>
+
+  <section id="readme">
+    <h2>README</h2>
+    <h3>Описание</h3>
+    <p>ARDA Student Manager — кроссплатформенное приложение на C++17 и Qt (версии 5.15 / 6.x) с использованием CMake. Поддерживает Windows и Linux. Приложение работает полностью офлайн, хранит данные в локальных файлах.</p>
+    <h3>Текущая версия</h3>
+    <p>Бета‑версия, выпущена 18 июля 2025 г. :contentReference[oaicite:0]{index=0}</p>
+    <h3>Избранные изменения</h3>
+    <ul>
+      <li>24.07.2025 — исправление ошибки с сортировкой и сохранением, объединение сохранения сетки с основной сеткой. :contentReference[oaicite:1]{index=1}</li>
+      <li>18.07.2025 — добавлены два новых меню, UI и логика разделены. :contentReference[oaicite:2]{index=2}</li>
+    </ul>
+    <h3>Как собрать</h3>
+    <pre>
+git clone https://github.com/Gerakl1123/ARDA_Stud_Manager
+cd ARDA_Stud_Manager
+mkdir build && cd build
+cmake ..
+make
+./ARDA_Stud_Manager
+    </pre>
+    <h3>Требования</h3>
+    <ul>
+      <li>Qt и CMake в PATH.</li>
+      <li>Компилятор с поддержкой C++17.</li>
+    </ul>
+    <h3>Лицензия</h3>
+    <p>Лицензия: CC BY‑NC 4.0 — бесплатно для некоммерческого использования при указании автора. :contentReference[oaicite:3]{index=3}</p>
+  </section>
+
+  <section id="contact">
+    <h2>Контакты</h2>
+    <p>Чтобы следить за обновлениями, присоединяйтесь к <a href="#">Telegram‑каналу</a> (ссылка в описании репозитория).</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 ARDA Student Manager</p>
+  </footer>
 </body>
 </html>
