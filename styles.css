@@ -329,3 +329,77 @@ footer {
         font-size: 14px;
     }
 }
+
+/* Страница функций */
+.function-category {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.function-category:last-child {
+    border-bottom: none;
+}
+
+.function-detail {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-left: 4px solid #2A5C8A;
+}
+
+.function-detail h3 {
+    color: #2A5C8A;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.function-detail ul {
+    margin-left: 20px;
+}
+
+.function-detail li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.function-detail strong {
+    color: #1B435E;
+}
+
+.demo-section {
+    background-color: #f0f8ff;
+    border: 1px solid #2A5C8A;
+    padding: 30px;
+    margin-top: 40px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.demo-download {
+    margin-top: 20px;
+}
+
+.demo-download small {
+    color: #666;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Адаптивность для страницы функций */
+@media (max-width: 768px) {
+    .function-detail {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .function-detail h3 {
+        font-size: 16px;
+    }
+    
+    .demo-section {
+        padding: 20px;
+    }
+}
