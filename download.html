@@ -3,24 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Скачать - ARDA</title>
+    <title>Скачать ARDA - Academic Records Data Application</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <div class="container header-content">
             <div class="logo">
-                <span class="logo-text">ARDA</span>
-                <span class="logo-subtitle">Academic Records Data Application</span>
+                ARDA - Academic Records Data Application
             </div>
             <nav>
                 <ul>
                     <li><a href="index.html">Главная</a></li>
-                    <li><a href="features.html">Функции</a></li>
                     <li><a href="download.html" class="active">Скачать</a></li>
-                    <li><a href="changelog.html">История версий</a></li>
-                    <li><a href="docs.html">Документация</a></li>
-                    <li><a href="support.html">Поддержка</a></li>
                 </ul>
             </nav>
         </div>
@@ -29,129 +24,86 @@
     <div class="container">
         <main>
             <h1>Скачать ARDA</h1>
-            
-            <div class="download-options">
-                <div class="download-card">
-                    <h3>ARDA 1.1.0 (Стабильная версия)</h3>
-                    <p>Рекомендуется для большинства пользователей</p>
-                    <div class="download-links">
-                        <a href="#" class="download-button">Скачать .exe (25 МБ)</a>
-                        <a href="#" class="download-link">Портативная версия (.zip)</a>
-                    </div>
-                </div>
 
-                <div class="download-card">
-                    <h3>ARDA 1.2.0 Beta</h3>
-                    <p>Тестовая версия с новыми функциями</p>
+            <div class="download-current">
+                <h2>Текущая версия</h2>
+                <div class="version-card">
+                    <h3>ARDA 1.1.0</h3>
+                    <div class="version-info">
+                        <strong>Дата выпуска:</strong> 2024-06-20<br>
+                        <strong>Размер:</strong> 25 МБ<br>
+                        <strong>Платформа:</strong> Windows x64
+                    </div>
                     <div class="download-links">
-                        <a href="#" class="download-button secondary">Скачать Beta</a>
-                        <span class="beta-warning">Только для тестирования</span>
+                        <a href="files/arda_setup_1.1.0.exe" class="download-button" download>Скачать установщик (.exe)</a>
+                        <a href="files/arda_portable_1.1.0.zip" class="download-button secondary" download>Портативная версия (.zip)</a>
                     </div>
                 </div>
             </div>
 
-            <h2>Все версии для скачивания</h2>
+            <h2>Предыдущие версии</h2>
             <table class="download-table">
                 <thead>
                     <tr>
                         <th>Версия</th>
-                        <th>Тип</th>
-                        <th>Размер</th>
                         <th>Дата</th>
-                        <th>Ссылка</th>
+                        <th>Размер</th>
+                        <th>Скачать</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>ARDA 1.1.0 (Windows x64)</td>
-                        <td>Исполняемый файл (.exe)</td>
-                        <td>25 МБ</td>
-                        <td>2024-06-20</td>
-                        <td><a href="#" class="download-link">Скачать</a></td>
-                    </tr>
-                    <tr>
-                        <td>ARDA 1.1.0 (Портативная версия)</td>
-                        <td>ZIP-архив</td>
-                        <td>24 МБ</td>
-                        <td>2024-06-20</td>
-                        <td><a href="#" class="download-link">Скачать</a></td>
-                    </tr>
-                    <tr>
-                        <td>Дополнительные модули</td>
-                        <td>ZIP-архив</td>
-                        <td>5 МБ</td>
-                        <td>2024-06-20</td>
-                        <td><a href="#" class="download-link">Скачать</a></td>
-                    </tr>
-                    <tr>
                         <td>ARDA 1.0.1</td>
-                        <td>Исполняемый файл (.exe)</td>
-                        <td>24 МБ</td>
                         <td>2024-05-15</td>
-                        <td><a href="#" class="download-link">Скачать</a></td>
+                        <td>24 МБ</td>
+                        <td><a href="files/arda_setup_1.0.1.exe" download>.exe</a> | <a href="files/arda_portable_1.0.1.zip" download>.zip</a></td>
+                    </tr>
+                    <tr>
+                        <td>ARDA 1.0.0</td>
+                        <td>2024-04-10</td>
+                        <td>23 МБ</td>
+                        <td><a href="files/arda_setup_1.0.0.exe" download>.exe</a> | <a href="files/arda_portable_1.0.0.zip" download>.zip</a></td>
                     </tr>
                 </tbody>
             </table>
 
-            <div class="system-requirements">
-                <h2>Системные требования</h2>
-                <div class="requirements-grid">
-                    <div class="requirement-item">
-                        <h4>Минимальные</h4>
-                        <ul>
-                            <li><strong>ОС:</strong> Windows 10 (x64)</li>
-                            <li><strong>Память:</strong> 2 ГБ ОЗУ</li>
-                            <li><strong>Место на диске:</strong> 100 МБ</li>
-                            <li><strong>Другое:</strong> .NET Framework 4.8</li>
-                        </ul>
-                    </div>
-                    <div class="requirement-item">
-                        <h4>Рекомендуемые</h4>
-                        <ul>
-                            <li><strong>ОС:</strong> Windows 11 (x64)</li>
-                            <li><strong>Память:</strong> 4 ГБ ОЗУ</li>
-                            <li><strong>Место на диске:</strong> 200 МБ</li>
-                            <li><strong>Другое:</strong> SSD, интернет-соединение</li>
-                        </ul>
-                    </div>
+            <h2>Системные требования</h2>
+            <div class="requirements">
+                <div class="requirement">
+                    <h3>Минимальные</h3>
+                    <ul>
+                        <li>Windows 10 (x64)</li>
+                        <li>2 ГБ ОЗУ</li>
+                        <li>100 МБ свободного места</li>
+                        <li>.NET Framework 4.8</li>
+                    </ul>
+                </div>
+                <div class="requirement">
+                    <h3>Рекомендуемые</h3>
+                    <ul>
+                        <li>Windows 11 (x64)</li>
+                        <li>4 ГБ ОЗУ</li>
+                        <li>200 МБ свободного места</li>
+                        <li>SSD накопитель</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="license-info">
-                <h2>Информация о лицензии</h2>
-                <p>"ARDA - Academic Records Data Application" является бесплатным (Freeware) программным обеспечением для некоммерческого использования в образовательных учреждениях.</p>
-                <p>Для коммерческого использования требуется приобретение лицензии.</p>
+            <div class="installation">
+                <h2>Установка</h2>
+                <ol>
+                    <li>Скачайте установочный файл</li>
+                    <li>Запустите arda_setup.exe</li>
+                    <li>Следуйте инструкциям установщика</li>
+                    <li>После установки программа будет доступна в меню Пуск</li>
+                </ol>
             </div>
         </main>
     </div>
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>ARDA</h3>
-                    <p>Academic Records Data Application</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Навигация</h3>
-                    <ul>
-                        <li><a href="index.html">Главная</a></li>
-                        <li><a href="features.html">Функции</a></li>
-                        <li><a href="download.html">Скачать</a></li>
-                        <li><a href="changelog.html">История версий</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Поддержка</h3>
-                    <ul>
-                        <li><a href="docs.html">Документация</a></li>
-                        <li><a href="support.html">Техническая поддержка</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>Copyright © 2024 ARDA - Academic Records Data Application. Все права защищены.</p>
-            </div>
+            <p>Copyright © 2024 ARDA - Academic Records Data Application</p>
         </div>
     </footer>
 </body>
