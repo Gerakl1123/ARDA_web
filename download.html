@@ -28,16 +28,26 @@
             <div class="download-current">
                 <h2>Текущая версия</h2>
                 <div class="version-card">
-                    <h3>ARDA 3.0</h3>
+                    <h3>ARDA 3.1</h3>
                     <div class="version-info">
-                        <strong>Дата выпуска:</strong> 05-10-2025<br>
-                        <strong>Размер:</strong> 109 MБ<br>
+                        <strong>Дата выпуска:</strong> 20-10-2025<br>
+                        <strong>Размер:</strong> 110 MБ<br>
                         <strong>Платформа:</strong> Windows x64
                     </div>
                     <div class="download-links">
-                        <a href="files/ARDA_setup_3.0_64bit.exe" class="download-button" download>Скачать установщик (.exe)</a>
+                        <a href="files/ARDA_setup_3.1_64bit.exe" class="download-button" download>Скачать установщик (.exe)</a>
                         <a href="https://drive.google.com/file/d/1dM2dsT3G3dh-i8Fomp5QjHwIOhdLSnnn/view?usp=sharing" class="download-button secondary" download>Портативная версия (.7z)</a>
                     </div>
+                </div>
+                
+                <div class="changelog">
+                    <h3>Что нового в версии 3.1:</h3>
+                    <ul>
+                        <li>Убран баг обращения к висячему указателю при выходе из подменю ФС</li>
+                        <li>Добавлено выделение и последующее удаление файлов/папок в меню managerFS</li>
+                        <li>Обновлен Logger.cpp</li>
+                        <li>Улучшена читаемость кода в managerFS</li>
+                    </ul>
                 </div>
             </div>
 
@@ -53,19 +63,33 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td>ARDA 3.0</td>
+                        <td>05-10-2025</td>
+                        <td>109 МБ</td>
+                        <td><a href="files/ARDA_setup_3.0_64bit.exe" download>.exe</a> | <a href="files/arda_portable_3.0.zip" download>.zip</a></td>
+                    </tr>
+                    <tr>
                         <td>ARDA 1.9</td>
                         <td>19.08.2025</td>
                         <td>108 МБ</td>
                         <td><a href="https://drive.google.com/file/d/1bOSaqsi8a5U4LOQOV2kk57d98JAcQNBc/view?usp=sharing" download>.exe</a> | <a href="files/arda_portable_1.0.1.zip" download>.zip</a></td>
                     </tr>
-                    <tr>
-                        <td>ARDA 2.2</td>
-                        <td>0000-00-00</td>
-                        <td>00 МБ</td>
-                        <td><a href="files/arda_setup_1.0.0.exe" download>.exe</a> | <a href="files/arda_portable_1.0.0.zip" download>.zip</a></td>
-                    </tr>
                 </tbody>
             </table>
+
+            <div class="future-version">
+                <h2>Будущие обновления</h2>
+                <div class="version-preview">
+                    <h3>Чего ожидать в версии 3.2:</h3>
+                    <ul>
+                        <li>Сортировка и нахождение файлов в managerFS</li>
+                        <li>Проверка на входные данные оценки ученика (формат 23422 вместо 3 4 2 2 _ 2)</li>
+                        <li>Удаление лишних символов во всех меню</li>
+                        <li>Доработка авторизации и регистрации</li>
+                        <li>Обновление UI и логики приложения</li>
+                    </ul>
+                </div>
+            </div>
 
             <h2>Системные требования</h2>
             <div class="requirements">
