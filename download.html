@@ -131,6 +131,10 @@
             background: linear-gradient(135deg, #27ae60, #219653);
         }
         
+        .download-button.tertiary {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+        }
+        
         .download-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
@@ -138,6 +142,10 @@
         
         .download-button.secondary:hover {
             box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
+        }
+        
+        .download-button.tertiary:hover {
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
         }
         
         .changelog {
@@ -292,6 +300,36 @@
     <div class="container">
         <main>
             <h1>Скачать ARDA</h1>
+
+            <!-- === НОВЫЙ ПАТЧ 3.39 === -->
+            <div class="download-current">
+                <h2>Новый патч 3.39</h2>
+                <div class="version-card">
+                    <h3>ARDA 3.39 (Портативная версия)</h3>
+                    <div class="version-info">
+                        <strong>Дата выпуска:</strong> 02-11-2025<br>
+                        <strong>Размер:</strong> 36.4 МБ<br>
+                        <strong>Платформа:</strong> Windows x64<br>
+                        <strong>Статус:</strong> <span style="color: #e67e22; font-weight: bold;">Портативная версия</span>
+                    </div>
+                    <div class="download-links">
+                        <a href="https://drive.google.com/file/d/1EEgZLsrIGveQYQKVlnz9u2oiKQdvdgrx/view?usp=sharing" class="download-button tertiary" download target="_blank">Скачать портативную версию 3.39</a>
+                    </div>
+                </div>
+                
+                <div class="changelog">
+                    <h3>Что нового в версии 3.39:</h3>
+                    
+                    <div class="changelog-section">
+                        <h4>🚀 Основные улучшения:</h4>
+                        <ul>
+                            <li>Убраны утечки памяти</li>
+                            <li>Сделан планировщик задач (пока редактирование задач нету)</li>
+                            <li>Убраны баги и улучшено общее состояние приложения</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
             <!-- === Текущая версия === -->
             <div class="download-current">
