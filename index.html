@@ -108,9 +108,26 @@
             margin-bottom: 1rem;
         }
         
+        .donate-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-left: 1rem;
+        }
+        
         .download-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .donate-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
         }
         
         .download-info {
@@ -155,6 +172,24 @@
             border-radius: 8px;
         }
         
+        .donation-section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .donation-card {
+            background: linear-gradient(135deg, #fff9e6, #fff0cc);
+            border-left: 4px solid #f39c12;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            text-align: left;
+        }
+        
         footer {
             background: #2c3e50;
             color: white;
@@ -180,6 +215,12 @@
             .functions {
                 grid-template-columns: 1fr;
             }
+            
+            .donate-button {
+                margin-left: 0;
+                margin-top: 1rem;
+                display: block;
+            }
         }
     </style>
 </head>
@@ -195,7 +236,7 @@
                     <li><a href="functions.html">Функции</a></li>
                     <li><a href="download.html">Скачать</a></li>
                     <li><a href="doc.html">Документация</a></li>
-                    
+                    <li><a href="donate.html" class="donate-button">Поддержать проект</a></li>
                 </ul>
             </nav>
         </div>
@@ -210,6 +251,7 @@
             
             <div class="download-main">
                 <a href="download.html" class="download-button">Скачать ARDA 1.1.0</a>
+                <a href="donate.html" class="donate-button">Поддержать проект</a>
                 <div class="download-info">
                     <strong>Версия 1.1.0</strong> (2024-06-20) | Windows x64 | 25 МБ
                 </div>
@@ -250,6 +292,21 @@
                 <div class="function">
                     <h3>Админ-панель</h3>
                     <p>Настройка прав доступа, контроль действий пользователей и настройка функционала под конкретное учреждение.</p>
+                </div>
+            </div>
+
+            <div class="donation-section">
+                <h2>Поддержать проект</h2>
+                <div class="donation-card">
+                    <h3>Ваша поддержка помогает развитию ARDA</h3>
+                    <p>ARDA - это проект с открытым исходным кодом, разрабатываемый энтузиастами. Ваши пожертвования помогают:</p>
+                    <ul>
+                        <li>Поддерживать и улучшать приложение</li>
+                        <li>Разрабатывать новые функции</li>
+                        <li>Обеспечивать техническую поддержку пользователей</li>
+                        <li>Создавать документацию и обучающие материалы</li>
+                    </ul>
+                    <a href="donate.html" class="donate-button" style="margin-top: 1rem; display: inline-block;">Поддержать проект</a>
                 </div>
             </div>
 
