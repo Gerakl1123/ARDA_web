@@ -45,6 +45,7 @@
         nav ul {
             display: flex;
             list-style: none;
+            align-items: center;
         }
         
         nav li {
@@ -108,6 +109,24 @@
             margin-bottom: 1rem;
         }
         
+        .github-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #333, #24292e);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 0 0.5rem 1rem;
+        }
+        
+        .github-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(36, 41, 46, 0.4);
+        }
+        
         .donate-button {
             display: inline-block;
             background: linear-gradient(135deg, #f39c12, #e67e22);
@@ -133,6 +152,37 @@
         .download-info {
             color: #7f8c8d;
             font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .github-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            background: #f8f9fa;
+            color: #333;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+        }
+        
+        .github-link:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .github-icon {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
         }
         
         .functions {
@@ -206,10 +256,11 @@
             nav ul {
                 margin-top: 1rem;
                 justify-content: center;
+                flex-wrap: wrap;
             }
             
             nav li {
-                margin: 0 0.5rem;
+                margin: 0.3rem;
             }
             
             .functions {
@@ -220,6 +271,15 @@
                 margin-left: 0;
                 margin-top: 1rem;
                 display: block;
+            }
+            
+            .github-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .github-button {
+                margin: 0.3rem 0;
             }
         }
     </style>
@@ -251,10 +311,22 @@
             <p>Мощное и легкое приложение для комплексного учета академической деятельности.</p>
             
             <div class="download-main">
-                <a href="download.html" class="download-button">Скачать ARDA 1.1.0</a>
+                <a href="download.html" class="download-button">Скачать ARDA 6.0</a>
+                <a href="https://github.com/Gerakl1123/ARDA_Stud_Manager" class="github-button">GitHub проекта</a>
                 <a href="donate.html" class="donate-button">Поддержать проект</a>
                 <div class="download-info">
-                    <strong>Версия 1.1.0</strong> (2024-06-20) | Windows x64 | 25 МБ
+                    <strong>Версия 6.0</strong> (2024-06-20) | Windows x64 | 25 МБ
+                </div>
+                
+                <div class="github-links">
+                    <a href="https://github.com/Gerakl1123/ARDA_Stud_Manager" class="github-link" target="_blank">
+                        <span class="github-icon">📦</span>
+                        Репозиторий проекта ARDA
+                    </a>
+                    <a href="https://github.com/Gerakl1123/ARDA_web" class="github-link" target="_blank">
+                        <span class="github-icon">🌐</span>
+                        Исходный код сайта
+                    </a>
                 </div>
             </div>
 
