@@ -1,227 +1,224 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Скачать ARDA - Academic Records Data Application</title>
-    <style>
-        * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
-        body {background-color:#f8fafc; color:#334155; line-height:1.6;}
-        .container {max-width:1200px; margin:0 auto; padding:0 20px;}
-        header {background:linear-gradient(135deg,#4f46e5,#7c3aed); color:white; padding:1rem 0; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);}
-        .header-content {display:flex; justify-content:space-between; align-items:center;}
-        .logo {font-size:1.5rem; font-weight:bold; display:flex; align-items:center; gap:0.5rem;}
-        .logo-badge {background:rgba(255,255,255,0.2); padding:0.25rem 0.75rem; border-radius:1rem; font-size:0.875rem; font-weight:600;}
-        nav ul {display:flex; list-style:none; gap:1.5rem;}
-        nav a {color:white; text-decoration:none; padding:0.5rem 1rem; border-radius:0.375rem; transition:all 0.3s ease; font-weight:500;}
-        nav a:hover, nav a.active {background-color:rgba(255,255,255,0.15); box-shadow:0 2px 4px rgba(0,0,0,0.1);}
-        .hero {text-align:center; padding:3rem 0 1rem;}
-        .version-badge {display:inline-block; background:linear-gradient(135deg,#10b981,#059669); color:white; padding:0.5rem 1.5rem; border-radius:2rem; font-weight:bold; font-size:1.25rem; margin-bottom:1rem; box-shadow:0 4px 6px -1px rgba(16,185,129,0.3);}
-        h1 {color:#1e293b; margin-bottom:1rem; font-size:2.5rem;}
-        .subtitle {color:#64748b; font-size:1.125rem; max-width:600px; margin:0 auto 2rem;}
-        .main-grid {display:grid; grid-template-columns:2fr 1fr; gap:2rem; margin:2rem 0;}
-        .card {background:white; border-radius:1rem; padding:2rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); border:1px solid #e2e8f0;}
-        .card-header {display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:2px solid #f1f5f9;}
-        h2 {color:#1e293b; font-size:1.5rem;}
-        .status-badge {padding:0.375rem 1rem; border-radius:0.5rem; font-size:0.875rem; font-weight:600;}
-        .status-stable {background-color:#d1fae5; color:#065f46;}
-        .status-outdated {background-color:#fee2e2; color:#991b1b;}
-        .download-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; margin:1.5rem 0;}
-        .download-card {background:linear-gradient(135deg,#f8fafc,#f1f5f9); border-radius:0.75rem; padding:1.5rem; border:2px solid #e2e8f0; transition:all 0.3s ease;}
-        .download-card:hover {border-color:#4f46e5; transform:translateY(-2px); box-shadow:0 10px 15px -3px rgba(79,70,229,0.1);}
-        .download-card h3 {color:#1e293b; margin-bottom:0.5rem; font-size:1.125rem;}
-        .download-card p {color:#64748b; font-size:0.875rem; margin-bottom:1rem;}
-        .btn {display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; background:linear-gradient(135deg,#4f46e5,#7c3aed); color:white; padding:0.75rem 1.5rem; text-decoration:none; border-radius:0.5rem; font-weight:600; transition:all 0.3s ease; width:100%; border:none; cursor:pointer;}
-        .btn:hover {transform:translateY(-1px); box-shadow:0 10px 15px -3px rgba(79,70,229,0.3);}
-        .btn-secondary {background:linear-gradient(135deg,#64748b,#475569);}
-        .feature-list {list-style:none; margin:1rem 0; padding-left:0;}
-        .feature-list li {padding:0.5rem 0; display:flex; align-items:center; gap:0.75rem;}
-        .feature-list li:before {content:"✓"; background:#10b981; color:white; width:1.25rem; height:1.25rem; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem;}
-        .archive-table {width:100%; border-collapse:collapse; margin:1rem 0;}
-        .archive-table th {background:#f1f5f9; color:#475569; padding:1rem; text-align:left; font-weight:600; border-bottom:2px solid #e2e8f0;}
-        .archive-table td {padding:1rem; border-bottom:1px solid #e2e8f0;}
-        .archive-table tr:hover {background-color:#f8fafc;}
-        .link-yandex {color:#7c3aed; font-weight:600;}
-        .sidebar-card {background:white; border-radius:1rem; padding:1.5rem; margin-bottom:1.5rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); border:1px solid #e2e8f0;}
-        .requirements-grid {display:grid; gap:0.75rem; margin:1rem 0;}
-        .requirement-item {display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid #f1f5f9;}
-        .requirement-label {color:#64748b;}
-        .requirement-value {color:#1e293b; font-weight:500;}
-        .info-box {background:linear-gradient(135deg,#f0f9ff,#e0f2fe); border-left:4px solid #0ea5e9; padding:1.25rem; border-radius:0.5rem; margin:1.5rem 0;}
-        .warning-box {background:linear-gradient(135deg,#fef3c7,#fde68a); border-left:4px solid #f59e0b; padding:1.25rem; border-radius:0.5rem; margin:1.5rem 0;}
-        footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
-        .footer-content {display:flex; justify-content:space-between; align-items:center;}
-        .copyright {color:#94a3b8; font-size:0.875rem;}
-        @media (max-width:768px) {
-            .header-content {flex-direction:column; gap:1rem; text-align:center;}
-            .main-grid {grid-template-columns:1fr;}
-            .footer-content {flex-direction:column; gap:1rem; text-align:center;}
-            h1 {font-size:2rem;}
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Скачать ARDA - Academic Records Data Application</title>
+<style>
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+body {background:#f8fafc; color:#334155; line-height:1.6;}
+.container {max-width:1200px; margin:0 auto; padding:0 20px;}
+
+/* Хедер */
+header {background:linear-gradient(135deg,#4f46e5,#7c3aed); color:white; padding:1rem 0; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);}
+.header-content {display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;}
+.logo {font-size:1.5rem; font-weight:bold; display:flex; align-items:center; gap:0.5rem;}
+.logo-badge {background:rgba(255,255,255,0.2); padding:0.25rem 0.75rem; border-radius:1rem; font-size:0.875rem; font-weight:600;}
+nav ul {display:flex; list-style:none; gap:1.5rem; flex-wrap:wrap;}
+nav a {color:white; text-decoration:none; padding:0.5rem 1rem; border-radius:0.375rem; transition:all 0.3s; font-weight:500;}
+nav a:hover, nav a.active {background-color:rgba(255,255,255,0.15); box-shadow:0 2px 4px rgba(0,0,0,0.1);}
+
+/* Герой-блок */
+.hero {text-align:center; padding:3rem 0 1rem;}
+.version-badge {display:inline-block; background:linear-gradient(135deg,#10b981,#059669); color:white; padding:0.5rem 1.5rem; border-radius:2rem; font-weight:bold; font-size:1.25rem; margin-bottom:1rem; box-shadow:0 4px 6px -1px rgba(16,185,129,0.3);}
+h1 {color:#1e293b; margin-bottom:1rem; font-size:2.5rem;}
+.subtitle {color:#64748b; font-size:1.125rem; max-width:600px; margin:0 auto 2rem;}
+
+/* Основная сетка */
+.main-grid {display:grid; grid-template-columns:2fr 1fr; gap:2rem; margin:2rem 0;}
+
+/* Карточки */
+.card {background:white; border-radius:1rem; padding:2rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); border:1px solid #e2e8f0;}
+.card-header {display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:2px solid #f1f5f9;}
+h2 {color:#1e293b; font-size:1.5rem;}
+.status-badge {padding:0.375rem 1rem; border-radius:0.5rem; font-size:0.875rem; font-weight:600;}
+.status-stable {background-color:#d1fae5; color:#065f46;}
+.status-outdated {background-color:#fee2e2; color:#991b1b;}
+
+/* Сетки для загрузок и системных требований */
+.download-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; margin:1.5rem 0;}
+.download-card {background:linear-gradient(135deg,#f8fafc,#f1f5f9); border-radius:0.75rem; padding:1.5rem; border:2px solid #e2e8f0; transition:all 0.3s ease;}
+.download-card:hover {border-color:#4f46e5; transform:translateY(-2px); box-shadow:0 10px 15px -3px rgba(79,70,229,0.1);}
+.download-card h3 {color:#1e293b; margin-bottom:0.5rem; font-size:1.125rem;}
+.download-card p {color:#64748b; font-size:0.875rem; margin-bottom:1rem;}
+
+/* Кнопки */
+.btn {display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; background:linear-gradient(135deg,#4f46e5,#7c3aed); color:white; padding:0.75rem 1.5rem; text-decoration:none; border-radius:0.5rem; font-weight:600; transition:all 0.3s ease; width:100%; border:none; cursor:pointer;}
+.btn:hover {transform:translateY(-1px); box-shadow:0 10px 15px -3px rgba(79,70,229,0.3);}
+.btn-secondary {background:linear-gradient(135deg,#64748b,#475569);}
+
+/* Списки функций */
+.feature-list {list-style:none; margin:1rem 0; padding-left:0;}
+.feature-list li {padding:0.5rem 0; display:flex; align-items:center; gap:0.75rem;}
+.feature-list li:before {content:"✓"; background:#10b981; color:white; width:1.25rem; height:1.25rem; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem;}
+
+/* Блоки информации */
+.info-box {background:linear-gradient(135deg,#f0f9ff,#e0f2fe); border-left:4px solid #0ea5e9; padding:1.25rem; border-radius:0.5rem; margin:1.5rem 0;}
+.warning-box {background:linear-gradient(135deg,#fef3c7,#fde68a); border-left:4px solid #f59e0b; padding:1.25rem; border-radius:0.5rem; margin:1.5rem 0;}
+
+/* Сайдбар */
+.sidebar {display:flex; flex-direction:column; gap:1.5rem;}
+.sidebar-card {background:white; border-radius:1rem; padding:1.5rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); border:1px solid #e2e8f0;}
+
+/* Системные требования */
+.requirements-grid {display:grid; gap:0.75rem; margin:1rem 0;}
+.requirement-item {display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid #f1f5f9;}
+.requirement-label {color:#64748b;}
+.requirement-value {color:#1e293b; font-weight:500;}
+
+/* История версий */
+.version-history {display:flex; flex-direction:column; gap:1rem; margin-top:1rem;}
+.version-history div {padding:1rem; border-radius:0.5rem;}
+.v-6-1 {background:#e0f2fe; border-left:4px solid #0ea5e9;}
+.v-6-0 {background:#fee2e2; border-left:4px solid #f87171;}
+.v-5-5 {background:#f0f9e8; border-left:4px solid #10b981;}
+.v-5-0 {background:#f0f0f0; border-left:4px solid #94a3b8;}
+.v-3-39 {background:#e0f2fe; border-left:4px solid #0ea5e9;}
+.v-3-3 {background:#f0f9e8; border-left:4px solid #10b981;}
+.v-3-29 {background:#f0f0f0; border-left:4px solid #94a3b8;}
+.v-3-2 {background:#e0f2fe; border-left:4px solid #0ea5e9;}
+.v-3-1 {background:#f0f9e8; border-left:4px solid #10b981;}
+.v-3-0 {background:#f0f0f0; border-left:4px solid #94a3b8;}
+.v-1-9 {background:#e0f2fe; border-left:4px solid #0ea5e9;}
+
+/* Футер */
+footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
+.footer-content {display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;}
+.footer-content div {margin-bottom:0.5rem;}
+.footer-content p {margin:0; font-size:0.875rem; color:#94a3b8;}
+
+@media(max-width:768px){
+    .main-grid {grid-template-columns:1fr; gap:2rem;}
+    h1 {font-size:2rem;}
+    .header-content, .footer-content {flex-direction:column; text-align:center;}
+}
+</style>
 </head>
 <body>
-    <header>
-        <div class="container header-content">
-            <div class="logo">
-                <span>ARDA Manager</span>
-                <span class="logo-badge">v6.1 RELEASE</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="functions.html">Функции</a></li>
-                    <li><a href="download.html" class="active">Скачать</a></li>
-                    <li><a href="doc.html">Документация</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <div class="container">
-        <div class="hero">
-            <div class="version-badge">ARDA 6.1 RELEASE</div>
-            <h1>Скачайте самую новую версию</h1>
-            <p class="subtitle">Исправлены баги, оптимизирован код и добавлена корректная работа с JSON в меню уроков</p>
-        </div>
-
-        <div class="main-grid">
-            <!-- Основной контент -->
-            <div>
-                <!-- Новая версия 6.1 -->
-                <div class="card">
-                    <div class="card-header">
-                        <h2>ARDA 6.1</h2>
-                        <span class="status-badge status-stable">Рекомендуется</span>
-                    </div>
-                    
-                    <div class="info-box">
-                        <strong>Что нового:</strong>
-                        <ul class="feature-list" style="margin-top:0.5rem;">
-                            <li>Убраны критические баги предыдущей версии</li>
-                            <li>Оптимизирован код для стабильной и быстрой работы</li>
-                            <li>Добавлена корректная работа с загрузкой JSON в меню уроков</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="warning-box">
-                        <strong>Важно:</strong> Редактирование JSON напрямую в меню редактора пока <strong>не поддерживается</strong> и не рекомендуется. 
-                        Изменения лучше вносить через меню уроков, где корректно работает перезапись файлов.
-                    </div>
-                    
-                    <div class="download-grid">
-                        <div class="download-card">
-                            <h3>Скачать ARDA 6.1</h3>
-                            <p>Полная версия для Windows</p>
-                            <a href="https://disk.yandex.ru/d/KXwv7zIJhFlQTg" class="btn" target="_blank" rel="noopener noreferrer">
-                                Скачать
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- История версий -->
-                <!-- История версий -->
-<div class="card" style="margin-top:2rem;">
-    <div class="card-header">
-        <h2>История версий ARDA</h2>
+<header>
+<div class="container header-content">
+    <div class="logo">
+        ARDA Manager
+        <span class="logo-badge">v6.1 RELEASE</span>
     </div>
-    <div style="margin-top:1rem; display:flex; flex-direction:column; gap:1rem;">
-        <div style="background:#e0f2fe; padding:1rem; border-left:4px solid #0ea5e9; border-radius:0.5rem;">
-            <strong>ARDA 6.1</strong> – 01-02-2026<br>
-            Убраны баги, оптимизирован код, добавлена корректная работа с JSON в меню уроков.
-        </div>
-        <div style="background:#fee2e2; padding:1rem; border-left:4px solid #f87171; border-radius:0.5rem;">
-            <strong>ARDA 6.0</strong> – 01-01-2026<br>
-            Основная функциональная версия, но содержала критический баг.
-        </div>
-        <div style="background:#f0f9e8; padding:1rem; border-left:4px solid #10b981; border-radius:0.5rem;">
-            <strong>ARDA 5.5</strong> – 11-12-2025<br>
-            Устаревшая версия, исправлены некоторые ошибки и улучшена производительность.
-        </div>
-        <div style="background:#f0f0f0; padding:1rem; border-left:4px solid #94a3b8; border-radius:0.5rem;">
-            <strong>ARDA 5.0</strong> – 10-11-2025<br>
-            Добавлены новые функции для работы с расписанием и PDF экспортом.
-        </div>
-        <div style="background:#e0f2fe; padding:1rem; border-left:4px solid #0ea5e9; border-radius:0.5rem;">
-            <strong>ARDA 3.39</strong> – 02-11-2025<br>
-            Мелкие исправления и улучшения интерфейса.
-        </div>
-        <div style="background:#f0f9e8; padding:1rem; border-left:4px solid #10b981; border-radius:0.5rem;">
-            <strong>ARDA 3.3</strong> – 31-10-2025<br>
-            Оптимизация кода и исправление ошибок совместимости.
-        </div>
-        <div style="background:#f0f0f0; padding:1rem; border-left:4px solid #94a3b8; border-radius:0.5rem;">
-            <strong>ARDA 3.29</strong> – 22-10-2025<br>
-            Улучшена работа с учебными планами.
-        </div>
-        <div style="background:#e0f2fe; padding:1rem; border-left:4px solid #0ea5e9; border-radius:0.5rem;">
-            <strong>ARDA 3.2</strong> – 18-10-2025<br>
-            Мелкие багфиксы и улучшения стабильности.
-        </div>
-        <div style="background:#f0f9e8; padding:1rem; border-left:4px solid #10b981; border-radius:0.5rem;">
-            <strong>ARDA 3.1</strong> – 20-09-2025<br>
-            Исправлены ошибки и улучшен интерфейс.
-        </div>
-        <div style="background:#f0f0f0; padding:1rem; border-left:4px solid #94a3b8; border-radius:0.5rem;">
-            <strong>ARDA 3.0</strong> – 06-09-2025<br>
-            Большой апгрейд с переработанным интерфейсом и функционалом.
-        </div>
-        <div style="background:#e0f2fe; padding:1rem; border-left:4px solid #0ea5e9; border-radius:0.5rem;">
-            <strong>ARDA 1.9</strong> – 01-05-2025<br>
-            Первая стабильная версия с базовым функционалом управления академическими записями.
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="functions.html">Функции</a></li>
+            <li><a href="download.html" class="active">Скачать</a></li>
+            <li><a href="doc.html">Документация</a></li>
+        </ul>
+    </nav>
+</div>
+</header>
+
+<div class="container">
+<div class="hero">
+    <div class="version-badge">ARDA 6.1 RELEASE</div>
+    <h1>Скачайте самую новую версию</h1>
+    <p class="subtitle">Исправлены баги, оптимизирован код и добавлена корректная работа с JSON в меню уроков</p>
+</div>
+
+<div class="main-grid">
+
+<!-- Контент слева -->
+<div>
+
+<!-- Версия 6.1 -->
+<div class="card">
+    <div class="card-header">
+        <h2>ARDA 6.1</h2>
+        <span class="status-badge status-stable">Рекомендуется</span>
+    </div>
+    <div class="info-box">
+        <strong>Что нового:</strong>
+        <ul class="feature-list">
+            <li>Убраны критические баги</li>
+            <li>Оптимизирован код</li>
+            <li>Корректная работа с JSON</li>
+        </ul>
+    </div>
+    <div class="warning-box">
+        <strong>Важно:</strong> Редактирование JSON напрямую не поддерживается. Используйте меню уроков для изменения файлов.
+    </div>
+    <div class="download-grid">
+        <div class="download-card">
+            <h3>Скачать ARDA 6.1</h3>
+            <p>Полная версия для Windows</p>
+            <a href="https://disk.yandex.ru/d/KXwv7zIJhFlQTg" class="btn" target="_blank">Скачать</a>
         </div>
     </div>
 </div>
 
-            <!-- Сайдбар -->
-            <div>
-                <!-- Системные требования -->
-                <div class="sidebar-card">
-                    <h3>Системные требования</h3>
-                    <div class="requirements-grid">
-                        <div class="requirement-item"><span class="requirement-label">ОС:</span><span class="requirement-value">Windows 10/11 x64</span></div>
-                        <div class="requirement-item"><span class="requirement-label">Процессор:</span><span class="requirement-value">Любой современный</span></div>
-                        <div class="requirement-item"><span class="requirement-label">ОЗУ:</span><span class="requirement-value">256 МБ минимум</span></div>
-                        <div class="requirement-item"><span class="requirement-label">Место на диске:</span><span class="requirement-value">500 МБ</span></div>
-                    </div>
-                </div>
-
-                <!-- Инструкция по установке -->
-                <div class="sidebar-card">
-                    <h3>Как установить</h3>
-                    <ol style="margin-left:1.25rem; margin-top:1rem; color:#475569;">
-                        <li style="margin-bottom:0.5rem;">Скачайте установочный файл</li>
-                        <li style="margin-bottom:0.5rem;">Запустите установщик</li>
-                        <li style="margin-bottom:0.5rem;">Следуйте инструкциям на экране</li>
-                        <li>Запустите ARDA из меню Пуск</li>
-                    </ol>
-                </div>
-
-                <!-- Контакты и поддержка -->
-                <div class="sidebar-card">
-                    <h3>Поддержка</h3>
-                    <p style="color:#64748b; margin-top:0.5rem; font-size:0.875rem;">
-                        Для вопросов и поддержки обращайтесь через почту niyazyangerman@gmail.com 
-                    </p>
-                    <a href="#" class="btn btn-secondary" style="margin-top:1rem; width:100%;">Документация</a>
-                </div>
-            </div>
-        </div>
+<!-- История версий -->
+<div class="card" style="margin-top:2rem;">
+    <div class="card-header"><h2>История версий ARDA</h2></div>
+    <div class="version-history">
+        <div class="v-6-1"><strong>ARDA 6.1</strong> – 01-02-2026: Убраны баги, оптимизирован код, корректная работа с JSON.</div>
+        <div class="v-6-0"><strong>ARDA 6.0</strong> – 01-01-2026: Основная функциональная версия, но содержала критический баг.</div>
+        <div class="v-5-5"><strong>ARDA 5.5</strong> – 11-12-2025: Исправлены ошибки, улучшена производительность.</div>
+        <div class="v-5-0"><strong>ARDA 5.0</strong> – 10-11-2025: Новые функции для расписаний и PDF.</div>
+        <div class="v-3-39"><strong>ARDA 3.39</strong> – 02-11-2025: Мелкие исправления интерфейса.</div>
+        <div class="v-3-3"><strong>ARDA 3.3</strong> – 31-10-2025: Оптимизация кода и совместимость.</div>
+        <div class="v-3-29"><strong>ARDA 3.29</strong> – 22-10-2025: Улучшена работа с учебными планами.</div>
+        <div class="v-3-2"><strong>ARDA 3.2</strong> – 18-10-2025: Мелкие багфиксы и стабильность.</div>
+        <div class="v-3-1"><strong>ARDA 3.1</strong> – 20-09-2025: Исправлены ошибки и улучшен интерфейс.</div>
+        <div class="v-3-0"><strong>ARDA 3.0</strong> – 06-09-2025: Большой апгрейд интерфейса и функционала.</div>
+        <div class="v-1-9"><strong>ARDA 1.9</strong> – 01-05-2025: Первая стабильная версия с базовым функционалом.</div>
     </div>
+</div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div>
-                    <p style="font-weight:600; margin-bottom:0.5rem;">ARDA Manager</p>
-                    <p class="copyright">© 2026 Academic Records Data Application. Все права защищены.</p>
-                </div>
-                <div>
-                    <p class="copyright">Текущая версия: 6.1 | Рекомендуется всегда использовать последнюю версию</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+</div>
+
+<!-- Сайдбар справа -->
+<div class="sidebar">
+
+<div class="sidebar-card">
+    <h3>Системные требования</h3>
+    <div class="requirements-grid">
+        <div class="requirement-item"><span class="requirement-label">ОС:</span><span class="requirement-value">Windows 10/11 x64</span></div>
+        <div class="requirement-item"><span class="requirement-label">Процессор:</span><span class="requirement-value">Любой современный</span></div>
+        <div class="requirement-item"><span class="requirement-label">ОЗУ:</span><span class="requirement-value">256 МБ минимум</span></div>
+        <div class="requirement-item"><span class="requirement-label">Место на диске:</span><span class="requirement-value">500 МБ</span></div>
+    </div>
+</div>
+
+<div class="sidebar-card">
+    <h3>Как установить</h3>
+    <ol style="margin-top:1rem; color:#475569;">
+        <li>Скачайте установочный файл</li>
+        <li>Запустите установщик</li>
+        <li>Следуйте инструкциям на экране</li>
+        <li>Запустите ARDA из меню Пуск</li>
+    </ol>
+</div>
+
+<div class="sidebar-card">
+    <h3>Поддержка</h3>
+    <p style="color:#64748b; margin-top:0.5rem; font-size:0.875rem;">
+        Для вопросов и поддержки: niyazyangerman@gmail.com
+    </p>
+    <a href="#" class="btn btn-secondary" style="margin-top:1rem;">Документация</a>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<footer>
+<div class="container">
+<div class="footer-content">
+    <div>
+        <p style="font-weight:600;">ARDA Manager</p>
+        <p>© 2026 Academic Records Data Application. Все права защищены.</p>
+    </div>
+    <div>
+        <p>Текущая версия: 6.1 | Рекомендуется использовать последнюю версию</p>
+    </div>
+</div>
+</footer>
+
 </body>
 </html>
