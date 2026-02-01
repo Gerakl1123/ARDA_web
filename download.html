@@ -24,6 +24,12 @@ nav a:hover, nav a.active {background-color:rgba(255,255,255,0.15); box-shadow:0
 h1 {color:#1e293b; margin-bottom:1rem; font-size:2.5rem;}
 .subtitle {color:#64748b; font-size:1.125rem; max-width:600px; margin:0 auto 2rem;}
 
+/* Счетчик */
+.download-counter {background:linear-gradient(135deg, #6366f1, #8b5cf6); color:white; padding:1rem 1.5rem; border-radius:1rem; text-align:center; margin:1.5rem auto; max-width:400px; box-shadow:0 10px 15px -3px rgba(99,102,241,0.3);}
+.counter-title {font-size:1.1rem; margin-bottom:0.5rem; font-weight:500;}
+.counter-number {font-size:3rem; font-weight:bold; text-shadow:0 2px 4px rgba(0,0,0,0.2); margin:0.5rem 0;}
+.counter-label {font-size:1rem; opacity:0.9;}
+
 /* Основная сетка */
 .main-grid {display:grid; grid-template-columns:2fr 1fr; gap:2rem; margin:2rem 0;}
 
@@ -91,6 +97,7 @@ footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
     .main-grid {grid-template-columns:1fr; gap:2rem;}
     h1 {font-size:2rem;}
     .header-content, .footer-content {flex-direction:column; text-align:center;}
+    .counter-number {font-size:2.5rem;}
 }
 </style>
 </head>
@@ -120,6 +127,13 @@ footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
     <p class="subtitle">Исправлены баги, оптимизирован код и добавлена корректная работа с JSON в меню уроков</p>
 </div>
 
+<!-- Счетчик скачиваний -->
+<div class="download-counter" id="downloadCounter">
+    <div class="counter-title">Нас уже скачали</div>
+    <div class="counter-number" id="counterNumber">0</div>
+    <div class="counter-label">пользователей</div>
+</div>
+
 <div class="main-grid">
 
 <!-- Контент слева -->
@@ -146,7 +160,7 @@ footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
         <div class="download-card">
             <h3>Скачать ARDA 6.1</h3>
             <p>Полная версия для Windows</p>
-            <a href="https://disk.yandex.ru/d/KXwv7zIJhFlQTg" class="btn" target="_blank">Скачать</a>
+            <button class="btn" onclick="incrementCounter()">Скачать</button>
         </div>
     </div>
 </div>
@@ -219,6 +233,75 @@ footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
     </div>
 </div>
 </footer>
+
+<script>
+// Функция для получения текущего счетчика из localStorage
+function getCounter() {
+    const counter = localStorage.getItem('ardaDownloadCounter');
+    return counter ? parseInt(counter) : 1250; // Начинаем с 1250 как пример
+}
+
+// Функция для обновления счетчика на странице
+function updateCounter() {
+    const counter = getCounter();
+    document.getElementById('counterNumber').textContent = counter.toLocaleString('ru-RU');
+}
+
+// Функция для увеличения счетчика
+function incrementCounter() {
+    let counter = getCounter();
+    counter++;
+    localStorage.setItem('ardaDownloadCounter', counter);
+    
+    // Обновляем отображение
+    updateCounter();
+    
+    // Показываем анимацию
+    const counterElement = document.getElementById('counterNumber');
+    counterElement.style.transform = 'scale(1.2)';
+    counterElement.style.color = '#10b981';
+    
+    setTimeout(() => {
+        counterElement.style.transform = 'scale(1)';
+        counterElement.style.color = 'white';
+    }, 300);
+    
+    // Перенаправляем на скачивание после небольшой задержки
+    setTimeout(() => {
+        window.open('https://disk.yandex.ru/d/KXwv7zIJhFlQTg', '_blank');
+    }, 500);
+}
+
+// Функция для создания эффекта "живого" счетчика при загрузке
+function animateCounter() {
+    const counterElement = document.getElementById('counterNumber');
+    const finalValue = getCounter();
+    let currentValue = 0;
+    const increment = Math.ceil(finalValue / 50);
+    const interval = 30;
+    
+    const timer = setInterval(() => {
+        currentValue += increment;
+        if (currentValue >= finalValue) {
+            currentValue = finalValue;
+            clearInterval(timer);
+        }
+        counterElement.textContent = currentValue.toLocaleString('ru-RU');
+    }, interval);
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    // Показываем начальное значение сразу
+    updateCounter();
+    
+    // Затем запускаем анимацию (можно закомментировать, если не нужна)
+    setTimeout(animateCounter, 500);
+    
+    // Добавляем клик на всем блоке счетчика для удобства
+    document.getElementById('downloadCounter').addEventListener('click', incrementCounter);
+});
+</script>
 
 </body>
 </html>
