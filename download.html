@@ -24,7 +24,24 @@ nav a:hover, nav a.active {background-color:rgba(255,255,255,0.15); box-shadow:0
 h1 {color:#1e293b; margin-bottom:1rem; font-size:2.5rem;}
 .subtitle {color:#64748b; font-size:1.125rem; max-width:600px; margin:0 auto 2rem;}
 
-/* Счетчик */
+/* Счетчики */
+.stats-grid {display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:1.5rem; margin:2rem 0;}
+.stat-card {background:white; border-radius:1rem; padding:1.5rem; text-align:center; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); border:1px solid #e2e8f0;}
+.stat-card:nth-child(1) {border-top:4px solid #4f46e5;}
+.stat-card:nth-child(2) {border-top:4px solid #10b981;}
+.stat-card:nth-child(3) {border-top:4px solid #f59e0b;}
+.stat-card:nth-child(4) {border-top:4px solid #8b5cf6;}
+
+.stat-number {font-size:2.5rem; font-weight:bold; margin:0.5rem 0; color:#1e293b;}
+.stat-number.downloads {color:#4f46e5;}
+.stat-number.visitors {color:#10b981;}
+.stat-number.unique {color:#f59e0b;}
+.stat-number.today {color:#8b5cf6;}
+
+.stat-label {color:#64748b; font-size:0.9rem; margin-bottom:0.5rem;}
+.stat-subtitle {font-size:0.8rem; color:#94a3b8; margin-top:0.5rem;}
+
+/* Счетчик скачиваний */
 .download-counter {background:linear-gradient(135deg, #6366f1, #8b5cf6); color:white; padding:1rem 1.5rem; border-radius:1rem; text-align:center; margin:1.5rem auto; max-width:400px; box-shadow:0 10px 15px -3px rgba(99,102,241,0.3);}
 .counter-title {font-size:1.1rem; margin-bottom:0.5rem; font-weight:500;}
 .counter-number {font-size:3rem; font-weight:bold; text-shadow:0 2px 4px rgba(0,0,0,0.2); margin:0.5rem 0;}
@@ -87,6 +104,17 @@ h2 {color:#1e293b; font-size:1.5rem;}
 .v-3-0 {background:#f0f0f0; border-left:4px solid #94a3b8;}
 .v-1-9 {background:#e0f2fe; border-left:4px solid #0ea5e9;}
 
+/* Активность пользователей */
+.activity-list {max-height:200px; overflow-y:auto; margin-top:1rem;}
+.activity-item {padding:0.75rem; border-bottom:1px solid #f1f5f9; display:flex; align-items:center; gap:0.75rem;}
+.activity-item:last-child {border-bottom:none;}
+.activity-icon {width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:bold; color:white;}
+.activity-icon.download {background-color:#4f46e5;}
+.activity-icon.visit {background-color:#10b981;}
+.activity-icon.new {background-color:#f59e0b;}
+.activity-content {flex:1;}
+.activity-time {font-size:0.75rem; color:#94a3b8;}
+
 /* Футер */
 footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
 .footer-content {display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;}
@@ -95,9 +123,11 @@ footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
 
 @media(max-width:768px){
     .main-grid {grid-template-columns:1fr; gap:2rem;}
+    .stats-grid {grid-template-columns:1fr;}
     h1 {font-size:2rem;}
     .header-content, .footer-content {flex-direction:column; text-align:center;}
     .counter-number {font-size:2.5rem;}
+    .stat-number {font-size:2rem;}
 }
 </style>
 </head>
@@ -125,6 +155,44 @@ footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
     <div class="version-badge">ARDA 6.1 RELEASE</div>
     <h1>Скачайте самую новую версию</h1>
     <p class="subtitle">Исправлены баги, оптимизирован код и добавлена корректная работа с JSON в меню уроков</p>
+</div>
+
+<!-- Сетка статистики -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-label">Всего скачиваний</div>
+        <div class="stat-number downloads" id="totalDownloads">0</div>
+        <div class="stat-subtitle">за всё время</div>
+    </div>
+    
+    <div class="stat-card">
+        <div class="stat-label">Посетителей сегодня</div>
+        <div class="stat-number visitors" id="todayVisitors">0</div>
+        <div class="stat-subtitle">из них уникальных</div>
+    </div>
+    
+    <div class="stat-card">
+        <div class="stat-label">Уникальных посетителей</div>
+        <div class="stat-number unique" id="uniqueVisitors">0</div>
+        <div class="stat-subtitle">всего за всё время</div>
+    </div>
+    
+    <div class="stat-card">
+        <div class="stat-label">Сейчас на сайте</div>
+        <div class="stat-number today" id="onlineNow">0</div>
+        <div class="stat-subtitle">активных пользователей</div>
+    </div>
+</div>
+
+<!-- Блок активных пользователей -->
+<div class="card">
+    <div class="card-header">
+        <h2>Последняя активность</h2>
+        <span class="status-badge status-stable">LIVE</span>
+    </div>
+    <div class="activity-list" id="activityList">
+        <!-- Сюда будут добавляться активности динамически -->
+    </div>
 </div>
 
 <!-- Счетчик скачиваний -->
@@ -160,7 +228,7 @@ footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
         <div class="download-card">
             <h3>Скачать ARDA 6.1</h3>
             <p>Полная версия для Windows</p>
-            <button class="btn" onclick="incrementCounter()">Скачать</button>
+            <button class="btn" onclick="trackDownload()">Скачать</button>
         </div>
     </div>
 </div>
@@ -229,34 +297,195 @@ footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
         <p>© 2026 Academic Records Data Application. Все права защищены.</p>
     </div>
     <div>
-        <p>Текущая версия: 6.1 | Рекомендуется использовать последнюю версию</p>
+        <p>Посетителей сегодня: <span id="footerVisitors">0</span> | Онлайн: <span id="footerOnline">0</span></p>
     </div>
 </div>
 </footer>
 
 <script>
-// Функция для получения текущего счетчика из localStorage
-function getCounter() {
-    const counter = localStorage.getItem('ardaDownloadCounter');
-    return counter ? parseInt(counter) : 0; // Начинаем с 1250 как пример
+// Глобальные переменные для статистики
+let stats = {
+    totalDownloads: 0,
+    todayVisitors: 0,
+    uniqueVisitors: 0,
+    onlineNow: 0,
+    todayDate: '',
+    activities: []
+};
+
+// Генерация уникального ID для пользователя
+function generateVisitorId() {
+    return 'visitor_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now().toString(36);
 }
 
-// Функция для обновления счетчика на странице
-function updateCounter() {
-    const counter = getCounter();
-    document.getElementById('counterNumber').textContent = counter.toLocaleString('ru-RU');
+// Получение текущей даты в формате YYYY-MM-DD
+function getTodayDate() {
+    const now = new Date();
+    return now.toISOString().split('T')[0];
 }
 
-// Функция для увеличения счетчика
-function incrementCounter() {
-    let counter = getCounter();
-    counter++;
-    localStorage.setItem('ardaDownloadCounter', counter);
+// Загрузка статистики из localStorage
+function loadStats() {
+    const savedStats = localStorage.getItem('ardaStats');
+    const today = getTodayDate();
+    
+    if (savedStats) {
+        stats = JSON.parse(savedStats);
+        
+        // Сброс счетчика сегодняшних посетителей, если день изменился
+        if (stats.todayDate !== today) {
+            stats.todayVisitors = 0;
+            stats.todayDate = today;
+            stats.onlineNow = 0;
+        }
+    } else {
+        // Начальные значения
+        stats = {
+            totalDownloads: 0,
+            todayVisitors: 0,
+            uniqueVisitors: 0,
+            onlineNow: 0,
+            todayDate: today,
+            activities: []
+        };
+    }
+    
+    // Проверяем, есть ли у пользователя ID
+    let visitorId = localStorage.getItem('ardaVisitorId');
+    let isNewVisitor = false;
+    
+    if (!visitorId) {
+        visitorId = generateVisitorId();
+        localStorage.setItem('ardaVisitorId', visitorId);
+        isNewVisitor = true;
+        stats.uniqueVisitors++;
+    }
+    
+    // Проверяем, был ли пользователь сегодня
+    const todayVisits = JSON.parse(localStorage.getItem('ardaTodayVisits') || '{}');
+    if (!todayVisits[visitorId]) {
+        stats.todayVisitors++;
+        todayVisits[visitorId] = true;
+        localStorage.setItem('ardaTodayVisits', JSON.stringify(todayVisits));
+        isNewVisitor = true;
+    }
+    
+    // Увеличиваем счетчик онлайн пользователей
+    stats.onlineNow++;
+    
+    // Добавляем активность
+    const activityTime = new Date().toLocaleTimeString('ru-RU', { 
+        hour: '2-digit', 
+        minute: '2-digit' 
+    });
+    
+    const activity = {
+        type: isNewVisitor ? 'new' : 'visit',
+        time: activityTime,
+        visitorId: visitorId.substring(0, 8) + '...'
+    };
+    
+    stats.activities.unshift(activity);
+    if (stats.activities.length > 10) {
+        stats.activities = stats.activities.slice(0, 10);
+    }
+    
+    // Сохраняем обновленную статистику
+    saveStats();
+    
+    return { visitorId, isNewVisitor };
+}
+
+// Сохранение статистики в localStorage
+function saveStats() {
+    localStorage.setItem('ardaStats', JSON.stringify(stats));
+}
+
+// Обновление отображения статистики
+function updateStatsDisplay() {
+    // Основные счетчики
+    document.getElementById('totalDownloads').textContent = stats.totalDownloads.toLocaleString('ru-RU');
+    document.getElementById('todayVisitors').textContent = stats.todayVisitors.toLocaleString('ru-RU');
+    document.getElementById('uniqueVisitors').textContent = stats.uniqueVisitors.toLocaleString('ru-RU');
+    document.getElementById('onlineNow').textContent = stats.onlineNow.toLocaleString('ru-RU');
+    
+    // Счетчик скачиваний
+    document.getElementById('counterNumber').textContent = stats.totalDownloads.toLocaleString('ru-RU');
+    
+    // Футер
+    document.getElementById('footerVisitors').textContent = stats.todayVisitors;
+    document.getElementById('footerOnline').textContent = stats.onlineNow;
+    
+    // Обновляем список активностей
+    updateActivitiesList();
+}
+
+// Обновление списка активностей
+function updateActivitiesList() {
+    const activityList = document.getElementById('activityList');
+    activityList.innerHTML = '';
+    
+    stats.activities.forEach(activity => {
+        const activityItem = document.createElement('div');
+        activityItem.className = 'activity-item';
+        
+        let iconClass = 'visit';
+        let iconText = 'V';
+        let activityText = 'Посетитель зашел на сайт';
+        
+        if (activity.type === 'download') {
+            iconClass = 'download';
+            iconText = 'D';
+            activityText = 'Пользователь скачал ARDA';
+        } else if (activity.type === 'new') {
+            iconClass = 'new';
+            iconText = 'N';
+            activityText = 'Новый посетитель на сайте';
+        }
+        
+        activityItem.innerHTML = `
+            <div class="activity-icon ${iconClass}">${iconText}</div>
+            <div class="activity-content">
+                <div>${activityText}</div>
+                <div class="activity-time">${activity.time} • ID: ${activity.visitorId}</div>
+            </div>
+        `;
+        
+        activityList.appendChild(activityItem);
+    });
+}
+
+// Трекер скачивания
+function trackDownload() {
+    // Увеличиваем счетчик скачиваний
+    stats.totalDownloads++;
+    
+    // Добавляем активность скачивания
+    const activityTime = new Date().toLocaleTimeString('ru-RU', { 
+        hour: '2-digit', 
+        minute: '2-digit' 
+    });
+    
+    const visitorId = localStorage.getItem('ardaVisitorId') || 'anonymous';
+    
+    const activity = {
+        type: 'download',
+        time: activityTime,
+        visitorId: visitorId.substring(0, 8) + '...'
+    };
+    
+    stats.activities.unshift(activity);
+    if (stats.activities.length > 10) {
+        stats.activities = stats.activities.slice(0, 10);
+    }
+    
+    // Сохраняем статистику
+    saveStats();
     
     // Обновляем отображение
-    updateCounter();
+    updateStatsDisplay();
     
-    // Показываем анимацию
+    // Анимация увеличения счетчика
     const counterElement = document.getElementById('counterNumber');
     counterElement.style.transform = 'scale(1.2)';
     counterElement.style.color = '#10b981';
@@ -272,34 +501,119 @@ function incrementCounter() {
     }, 500);
 }
 
-// Функция для создания эффекта "живого" счетчика при загрузке
-function animateCounter() {
-    const counterElement = document.getElementById('counterNumber');
-    const finalValue = getCounter();
-    let currentValue = 0;
-    const increment = Math.ceil(finalValue / 50);
-    const interval = 30;
+// Симуляция онлайн пользователей (обновляется каждую минуту)
+function simulateOnlineUsers() {
+    // Случайные колебания онлайн пользователей
+    const change = Math.floor(Math.random() * 3) - 1; // -1, 0, или 1
+    stats.onlineNow = Math.max(1, stats.onlineNow + change);
     
-    const timer = setInterval(() => {
-        currentValue += increment;
-        if (currentValue >= finalValue) {
-            currentValue = finalValue;
-            clearInterval(timer);
+    // Периодически добавляем новые активности
+    if (Math.random() < 0.3 && stats.activities.length > 0) {
+        const activityTime = new Date().toLocaleTimeString('ru-RU', { 
+            hour: '2-digit', 
+            minute: '2-digit' 
+        });
+        
+        const activityTypes = ['visit', 'new', 'download'];
+        const randomType = activityTypes[Math.floor(Math.random() * activityTypes.length)];
+        
+        const activity = {
+            type: randomType,
+            time: activityTime,
+            visitorId: 'visitor_' + Math.random().toString(36).substr(2, 6)
+        };
+        
+        stats.activities.unshift(activity);
+        if (stats.activities.length > 10) {
+            stats.activities = stats.activities.slice(0, 10);
         }
-        counterElement.textContent = currentValue.toLocaleString('ru-RU');
-    }, interval);
+    }
+    
+    saveStats();
+    updateStatsDisplay();
+}
+
+// Анимация счетчиков при загрузке
+function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    
+    counters.forEach(counter => {
+        const finalValue = parseInt(counter.textContent.replace(/\s/g, ''));
+        const duration = 1500;
+        const startTime = Date.now();
+        const startValue = 0;
+        
+        function update() {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeProgress = 1 - Math.pow(1 - progress, 3); // Кубическое замедление
+            const currentValue = Math.floor(startValue + (finalValue - startValue) * easeProgress);
+            
+            counter.textContent = currentValue.toLocaleString('ru-RU');
+            
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            }
+        }
+        
+        requestAnimationFrame(update);
+    });
 }
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
-    // Показываем начальное значение сразу
-    updateCounter();
+    // Загружаем статистику и отслеживаем посетителя
+    loadStats();
     
-    // Затем запускаем анимацию (можно закомментировать, если не нужна)
-    setTimeout(animateCounter, 500);
+    // Обновляем отображение
+    updateStatsDisplay();
     
-    // Добавляем клик на всем блоке счетчика для удобства
-    document.getElementById('downloadCounter').addEventListener('click', incrementCounter);
+    // Запускаем анимацию счетчиков
+    setTimeout(animateCounters, 500);
+    
+    // Добавляем клик на блоке счетчика
+    document.getElementById('downloadCounter').addEventListener('click', trackDownload);
+    
+    // Запускаем симуляцию онлайн пользователей
+    setInterval(simulateOnlineUsers, 60000); // Каждую минуту
+    
+    // Обновляем время онлайн пользователя
+    setInterval(() => {
+        // Эта функция поддерживает сессию пользователя
+        const onlineUsers = JSON.parse(localStorage.getItem('ardaOnlineUsers') || '{}');
+        const visitorId = localStorage.getItem('ardaVisitorId');
+        
+        if (visitorId) {
+            onlineUsers[visitorId] = Date.now();
+            localStorage.setItem('ardaOnlineUsers', JSON.stringify(onlineUsers));
+        }
+    }, 30000); // Каждые 30 секунд
+    
+    // Очистка старых онлайн пользователей (тех, кто не активен более 5 минут)
+    setInterval(() => {
+        const onlineUsers = JSON.parse(localStorage.getItem('ardaOnlineUsers') || '{}');
+        const fiveMinutesAgo = Date.now() - 5 * 60 * 1000;
+        let activeCount = 0;
+        
+        Object.keys(onlineUsers).forEach(key => {
+            if (onlineUsers[key] > fiveMinutesAgo) {
+                activeCount++;
+            }
+        });
+        
+        stats.onlineNow = Math.max(1, activeCount);
+        saveStats();
+        updateStatsDisplay();
+    }, 60000); // Каждую минуту
+});
+
+// Обработка ухода пользователя со страницы
+window.addEventListener('beforeunload', function() {
+    // Уменьшаем счетчик онлайн пользователей
+    if (stats.onlineNow > 0) {
+        stats.onlineNow--;
+    }
+    saveStats();
 });
 </script>
 
