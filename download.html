@@ -1,553 +1,853 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
+<meta charset="windows-1251">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Скачать ARDA - Academic Records Data Application</title>
+<title>ARDA Manager 6.1 Download</title>
 <style>
-* {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
-body {background:#f8fafc; color:#334155; line-height:1.6;}
-.container {max-width:1200px; margin:0 auto; padding:0 20px;}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* Хедер */
-header {background:linear-gradient(135deg,#4f46e5,#7c3aed); color:white; padding:1rem 0; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);}
-.header-content {display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;}
-.logo {font-size:1.5rem; font-weight:bold; display:flex; align-items:center; gap:0.5rem;}
-.logo-badge {background:rgba(255,255,255,0.2); padding:0.25rem 0.75rem; border-radius:1rem; font-size:0.875rem; font-weight:600;}
-nav ul {display:flex; list-style:none; gap:1.5rem; flex-wrap:wrap;}
-nav a {color:white; text-decoration:none; padding:0.5rem 1rem; border-radius:0.375rem; transition:all 0.3s; font-weight:500;}
-nav a:hover, nav a.active {background-color:rgba(255,255,255,0.15); box-shadow:0 2px 4px rgba(0,0,0,0.1);}
+body {
+    background-color: #008080;
+    color: #000000;
+    font-family: "MS Sans Serif", Tahoma, Geneva, sans-serif;
+    font-size: 11px;
+    line-height: 1.4;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJElEQVQYV2NkYGD4z4AJmDBJhgwZGBjQxTEqQlTEqIhRBBgAATYBAXqkK3EAAAAASUVORK5CYII=');
+    cursor: default;
+}
 
-/* Герой-блок */
-.hero {text-align:center; padding:3rem 0 1rem;}
-.version-badge {display:inline-block; background:linear-gradient(135deg,#10b981,#059669); color:white; padding:0.5rem 1.5rem; border-radius:2rem; font-weight:bold; font-size:1.25rem; margin-bottom:1rem; box-shadow:0 4px 6px -1px rgba(16,185,129,0.3);}
-h1 {color:#1e293b; margin-bottom:1rem; font-size:2.5rem;}
-.subtitle {color:#64748b; font-size:1.125rem; max-width:600px; margin:0 auto 2rem;}
+/* Рабочий стол Windows 95 */
+.desktop {
+    position: relative;
+    min-height: 100vh;
+}
 
-/* Счетчики */
-.stats-grid {display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:1.5rem; margin:2rem 0;}
-.stat-card {background:white; border-radius:1rem; padding:1.5rem; text-align:center; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); border:1px solid #e2e8f0;}
-.stat-card:nth-child(1) {border-top:4px solid #4f46e5;}
-.stat-card:nth-child(2) {border-top:4px solid #10b981;}
-.stat-card:nth-child(3) {border-top:4px solid #f59e0b;}
-.stat-card:nth-child(4) {border-top:4px solid #8b5cf6;}
+/* Панель задач */
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 28px;
+    background: #c0c0c0;
+    border-top: 2px solid #dfdfdf;
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+    z-index: 1000;
+}
 
-.stat-number {font-size:2.5rem; font-weight:bold; margin:0.5rem 0; color:#1e293b;}
-.stat-number.downloads {color:#4f46e5;}
-.stat-number.visitors {color:#10b981;}
-.stat-number.unique {color:#f59e0b;}
-.stat-number.today {color:#8b5cf6;}
+.start-button {
+    background: #c0c0c0;
+    border: 2px outset;
+    border-color: #dfdfdf #808080 #808080 #dfdfdf;
+    padding: 2px 6px;
+    font-weight: bold;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-right: 4px;
+}
 
-.stat-label {color:#64748b; font-size:0.9rem; margin-bottom:0.5rem;}
-.stat-subtitle {font-size:0.8rem; color:#94a3b8; margin-top:0.5rem;}
+.start-button:active {
+    border-color: #808080 #dfdfdf #dfdfdf #808080;
+    padding: 3px 5px 1px 7px;
+}
 
-/* Счетчик скачиваний */
-.download-counter {background:linear-gradient(135deg, #6366f1, #8b5cf6); color:white; padding:1rem 1.5rem; border-radius:1rem; text-align:center; margin:1.5rem auto; max-width:400px; box-shadow:0 10px 15px -3px rgba(99,102,241,0.3);}
-.counter-title {font-size:1.1rem; margin-bottom:0.5rem; font-weight:500;}
-.counter-number {font-size:3rem; font-weight:bold; text-shadow:0 2px 4px rgba(0,0,0,0.2); margin:0.5rem 0;}
-.counter-label {font-size:1rem; opacity:0.9;}
+.clock {
+    margin-left: auto;
+    padding: 2px 6px;
+    background: #c0c0c0;
+    border: 1px inset;
+    font-size: 11px;
+}
 
-/* Основная сетка */
-.main-grid {display:grid; grid-template-columns:2fr 1fr; gap:2rem; margin:2rem 0;}
+/* Окна */
+.window {
+    position: absolute;
+    background-color: #c0c0c0;
+    border: 2px outset;
+    border-color: #dfdfdf #808080 #808080 #dfdfdf;
+    padding: 2px;
+    min-width: 300px;
+    z-index: 100;
+    resize: both;
+    overflow: hidden;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+}
 
-/* Карточки */
-.card {background:white; border-radius:1rem; padding:2rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); border:1px solid #e2e8f0;}
-.card-header {display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:2px solid #f1f5f9;}
-h2 {color:#1e293b; font-size:1.5rem;}
-.status-badge {padding:0.375rem 1rem; border-radius:0.5rem; font-size:0.875rem; font-weight:600;}
-.status-stable {background-color:#d1fae5; color:#065f46;}
-.status-outdated {background-color:#fee2e2; color:#991b1b;}
+.window-titlebar {
+    background: linear-gradient(to right, #000080, #1084d0);
+    color: white;
+    padding: 2px 4px;
+    font-weight: bold;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+    cursor: move;
+    user-select: none;
+}
 
-/* Сетки для загрузок и системных требований */
-.download-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; margin:1.5rem 0;}
-.download-card {background:linear-gradient(135deg,#f8fafc,#f1f5f9); border-radius:0.75rem; padding:1.5rem; border:2px solid #e2e8f0; transition:all 0.3s ease;}
-.download-card:hover {border-color:#4f46e5; transform:translateY(-2px); box-shadow:0 10px 15px -3px rgba(79,70,229,0.1);}
-.download-card h3 {color:#1e293b; margin-bottom:0.5rem; font-size:1.125rem;}
-.download-card p {color:#64748b; font-size:0.875rem; margin-bottom:1rem;}
+.window-titlebar .title {
+    padding-left: 18px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAOElEQVQokWNgGAWjYBSMggEJMDJgAVVVVf+J0UcUYGRgYGC4cOECWkFZWVmCmrACTAwMDAwKCgpoJf///w8ApI0JgBfjgDAAAAAASUVORK5CYII=") no-repeat left center;
+}
+
+.window-buttons {
+    display: flex;
+    gap: 2px;
+}
+
+.window-button {
+    width: 16px;
+    height: 14px;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    background: #c0c0c0;
+    border: 1px outset;
+    cursor: default;
+}
+
+.window-button:hover {
+    background: #e0e0e0;
+}
+
+.window-content {
+    background: #c0c0c0;
+    padding: 8px;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+/* Иконки на рабочем столе */
+.desktop-icons {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.desktop-icon {
+    width: 70px;
+    text-align: center;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.desktop-icon:hover {
+    background: rgba(0, 0, 128, 0.1);
+}
+
+.desktop-icon-image {
+    width: 32px;
+    height: 32px;
+    margin: 0 auto 4px;
+    background: #c0c0c0;
+    border: 1px outset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.desktop-icon-label {
+    font-size: 10px;
+    color: white;
+    text-shadow: 1px 1px 0 #000;
+    word-break: break-all;
+}
 
 /* Кнопки */
-.btn {display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; background:linear-gradient(135deg,#4f46e5,#7c3aed); color:white; padding:0.75rem 1.5rem; text-decoration:none; border-radius:0.5rem; font-weight:600; transition:all 0.3s ease; width:100%; border:none; cursor:pointer;}
-.btn:hover {transform:translateY(-1px); box-shadow:0 10px 15px -3px rgba(79,70,229,0.3);}
-.btn-secondary {background:linear-gradient(135deg,#64748b,#475569);}
+.button {
+    background: #c0c0c0;
+    border: 2px outset;
+    border-color: #dfdfdf #808080 #808080 #dfdfdf;
+    padding: 3px 12px;
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, Geneva, sans-serif;
+    cursor: default;
+    min-width: 75px;
+    text-align: center;
+}
 
-/* Списки функций */
-.feature-list {list-style:none; margin:1rem 0; padding-left:0;}
-.feature-list li {padding:0.5rem 0; display:flex; align-items:center; gap:0.75rem;}
-.feature-list li:before {content:"✓"; background:#10b981; color:white; width:1.25rem; height:1.25rem; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem;}
+.button:hover {
+    border-color: #808080 #dfdfdf #dfdfdf #808080;
+}
 
-/* Блоки информации */
-.info-box {background:linear-gradient(135deg,#f0f9ff,#e0f2fe); border-left:4px solid #0ea5e9; padding:1.25rem; border-radius:0.5rem; margin:1.5rem 0;}
-.warning-box {background:linear-gradient(135deg,#fef3c7,#fde68a); border-left:4px solid #f59e0b; padding:1.25rem; border-radius:0.5rem; margin:1.5rem 0;}
+.button:active {
+    border-color: #808080 #dfdfdf #dfdfdf #808080;
+    padding: 4px 11px 2px 13px;
+}
 
-/* Сайдбар */
-.sidebar {display:flex; flex-direction:column; gap:1.5rem;}
-.sidebar-card {background:white; border-radius:1rem; padding:1.5rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1); border:1px solid #e2e8f0;}
+/* Счетчик */
+.counter-display {
+    background: #000;
+    color: #00ff00;
+    font-family: "Courier New", monospace;
+    font-size: 32px;
+    text-align: center;
+    padding: 10px;
+    border: 2px inset;
+    margin: 10px 0;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px #00ff00;
+}
 
-/* Системные требования */
-.requirements-grid {display:grid; gap:0.75rem; margin:1rem 0;}
-.requirement-item {display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid #f1f5f9;}
-.requirement-label {color:#64748b;}
-.requirement-value {color:#1e293b; font-weight:500;}
+.counter-label {
+    text-align: center;
+    font-size: 12px;
+    color: #000080;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
 
-/* История версий */
-.version-history {display:flex; flex-direction:column; gap:1rem; margin-top:1rem;}
-.version-history div {padding:1rem; border-radius:0.5rem;}
-.v-6-1 {background:#e0f2fe; border-left:4px solid #0ea5e9;}
-.v-6-0 {background:#fee2e2; border-left:4px solid #f87171;}
-.v-5-5 {background:#f0f9e8; border-left:4px solid #10b981;}
-.v-5-0 {background:#f0f0f0; border-left:4px solid #94a3b8;}
-.v-3-39 {background:#e0f2fe; border-left:4px solid #0ea5e9;}
-.v-3-3 {background:#f0f9e8; border-left:4px solid #10b981;}
-.v-3-29 {background:#f0f0f0; border-left:4px solid #94a3b8;}
-.v-3-2 {background:#e0f2fe; border-left:4px solid #0ea5e9;}
-.v-3-1 {background:#f0f9e8; border-left:4px solid #10b981;}
-.v-3-0 {background:#f0f0f0; border-left:4px solid #94a3b8;}
-.v-1-9 {background:#e0f2fe; border-left:4px solid #0ea5e9;}
+/* Прогресс бар */
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    border: 2px inset;
+    background: #c0c0c0;
+    margin: 10px 0;
+    position: relative;
+}
 
-/* Активность пользователей */
-.activity-list {max-height:200px; overflow-y:auto; margin-top:1rem;}
-.activity-item {padding:0.75rem; border-bottom:1px solid #f1f5f9; display:flex; align-items:center; gap:0.75rem;}
-.activity-item:last-child {border-bottom:none;}
-.activity-icon {width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:bold; color:white;}
-.activity-icon.download {background-color:#4f46e5;}
-.activity-icon.visit {background-color:#10b981;}
-.activity-icon.new {background-color:#f59e0b;}
-.activity-content {flex:1;}
-.activity-time {font-size:0.75rem; color:#94a3b8;}
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, #000080, #1084d0);
+    width: 0%;
+    transition: width 0.3s;
+}
 
-/* Футер */
-footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
-.footer-content {display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;}
-.footer-content div {margin-bottom:0.5rem;}
-.footer-content p {margin:0; font-size:0.875rem; color:#94a3b8;}
+/* Таблицы */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
 
-@media(max-width:768px){
-    .main-grid {grid-template-columns:1fr; gap:2rem;}
-    .stats-grid {grid-template-columns:1fr;}
-    h1 {font-size:2rem;}
-    .header-content, .footer-content {flex-direction:column; text-align:center;}
-    .counter-number {font-size:2.5rem;}
-    .stat-number {font-size:2rem;}
+.table th {
+    background: #000080;
+    color: white;
+    text-align: left;
+    padding: 4px 8px;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.table td {
+    padding: 4px 8px;
+    border: 1px solid #808080;
+    background: #fff;
+}
+
+/* Скроллбар */
+::-webkit-scrollbar {
+    width: 16px;
+}
+
+::-webkit-scrollbar-track {
+    background: #c0c0c0;
+    border: 1px inset;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border: 1px outset;
+}
+
+/* Анимации */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.blink {
+    animation: blink 0.3s;
+}
+
+@keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+}
+
+.scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(0, 255, 0, 0.3);
+    z-index: 9999;
+    animation: scanline 2s linear infinite;
+    pointer-events: none;
+}
+
+/* Easter egg окно */
+.easter-egg {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+    background: #000;
+    color: #0f0;
+    border: 2px solid #0f0;
+    padding: 20px;
+    font-family: "Courier New", monospace;
+}
+
+/* Сообщения */
+.message-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #c0c0c0;
+    border: 3px outset;
+    padding: 0;
+    z-index: 1500;
+    min-width: 300px;
+}
+
+.message-title {
+    background: #000080;
+    color: white;
+    padding: 4px 8px;
+    font-weight: bold;
+}
+
+.message-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.message-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
 }
 </style>
 </head>
 <body>
+<div class="scanline"></div>
 
-<header>
-<div class="container header-content">
-    <div class="logo">
-        ARDA Manager
-        <span class="logo-badge">v6.1 RELEASE</span>
+<div class="desktop">
+    <!-- Иконки на рабочем столе -->
+    <div class="desktop-icons">
+        <div class="desktop-icon" onclick="openWindow('downloadWindow')" ondblclick="openWindow('downloadWindow')">
+            <div class="desktop-icon-image">⬇</div>
+            <div class="desktop-icon-label">Скачать ARDA</div>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('aboutWindow')" ondblclick="openWindow('aboutWindow')">
+            <div class="desktop-icon-image">❓</div>
+            <div class="desktop-icon-label">О программе</div>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('secretWindow')" ondblclick="showMatrix()">
+            <div class="desktop-icon-image">💾</div>
+            <div class="desktop-icon-label">Секреты</div>
+        </div>
+        <div class="desktop-icon" onclick="formatC()" ondblclick="formatC()">
+            <div class="desktop-icon-image">💽</div>
+            <div class="desktop-icon-label">Диск C:</div>
+        </div>
     </div>
-    <nav>
-        <ul>
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="functions.html">Функции</a></li>
-            <li><a href="download.html" class="active">Скачать</a></li>
-            <li><a href="doc.html">Документация</a></li>
-        </ul>
-    </nav>
-</div>
-</header>
 
-<div class="container">
-<div class="hero">
-    <div class="version-badge">ARDA 6.1 RELEASE</div>
-    <h1>Скачайте самую новую версию</h1>
-    <p class="subtitle">Исправлены баги, оптимизирован код и добавлена корректная работа с JSON в меню уроков</p>
-</div>
+    <!-- Окно загрузки -->
+    <div class="window" id="downloadWindow" style="top: 100px; left: 200px; width: 500px;">
+        <div class="window-titlebar">
+            <div class="title">Загрузка ARDA Manager 6.1</div>
+            <div class="window-buttons">
+                <div class="window-button" onclick="minimizeWindow('downloadWindow')">_</div>
+                <div class="window-button" onclick="maximizeWindow('downloadWindow')">□</div>
+                <div class="window-button" onclick="closeWindow('downloadWindow')">×</div>
+            </div>
+        </div>
+        
+        <div class="window-content">
+            <div class="counter-label">Всего загрузок:</div>
+            <div class="counter-display" id="counter">0000000</div>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <button class="button" onclick="startDownload()" style="font-size: 14px; padding: 6px 24px;">
+                    <b>⬇ СКАЧАТЬ ARDA_6.1.exe</b>
+                </button>
+                <div style="font-size: 10px; color: #808080; margin-top: 5px;">
+                    ARDA_6.1.exe (2.4 MB) • Сборка 2026-02-01
+                </div>
+            </div>
 
-<!-- Сетка статистики -->
-<div class="stats-grid">
-    <div class="stat-card">
-        <div class="stat-label">Всего скачиваний</div>
-        <div class="stat-number downloads" id="totalDownloads">0</div>
-        <div class="stat-subtitle">за всё время</div>
-    </div>
-    
-    <div class="stat-card">
-        <div class="stat-label">Посетителей сегодня</div>
-        <div class="stat-number visitors" id="todayVisitors">0</div>
-        <div class="stat-subtitle">из них уникальных</div>
-    </div>
-    
-    <div class="stat-card">
-        <div class="stat-label">Уникальных посетителей</div>
-        <div class="stat-number unique" id="uniqueVisitors">0</div>
-        <div class="stat-subtitle">всего за всё время</div>
-    </div>
-    
-    <div class="stat-card">
-        <div class="stat-label">Сейчас на сайте</div>
-        <div class="stat-number today" id="onlineNow">1</div>
-        <div class="stat-subtitle">активных пользователей</div>
-    </div>
-</div>
+            <div class="progress-bar" id="progressBar" style="display: none;">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div id="progressText" style="text-align: center; font-size: 11px; display: none;"></div>
 
-<!-- Блок активных пользователей -->
-<div class="card">
-    <div class="card-header">
-        <h2>Последняя активность</h2>
-        <span class="status-badge status-stable">REAL-TIME</span>
-    </div>
-    <div class="activity-list" id="activityList">
-        <!-- Сюда будут добавляться активности динамически -->
-    </div>
-</div>
+            <div style="background: #fff; border: 1px inset; padding: 10px; margin: 15px 0;">
+                <table class="table">
+                    <tr><th colspan="2">Информация о файле</th></tr>
+                    <tr><td>Имя файла:</td><td><b>ARDA_6.1.exe</b></td></tr>
+                    <tr><td>Размер:</td><td>2,457,600 байт</td></tr>
+                    <tr><td>Версия:</td><td>6.1</td></tr>
+                    <tr><td>Дата сборки:</td><td>01.02.2026</td></tr>
+                    <tr><td>Цифровая подпись:</td><td>ARDA Manager (2025-2026)</td></tr>
+                    <tr><td>Поддержка:</td><td>Windows 10/11 64 bit (coming soon Windows 7)</td></tr>
+                    
+                </table>
+            </div>
 
-<!-- Счетчик скачиваний -->
-<div class="download-counter" id="downloadCounter">
-    <div class="counter-title">Нас уже скачали</div>
-    <div class="counter-number" id="counterNumber">0</div>
-    <div class="counter-label">пользователей</div>
-</div>
-
-<div class="main-grid">
-
-<!-- Контент слева -->
-<div>
-
-<!-- Версия 6.1 -->
-<div class="card">
-    <div class="card-header">
-        <h2>ARDA 6.1</h2>
-        <span class="status-badge status-stable">Рекомендуется</span>
+            <div style="background: #ffffe0; border: 1px solid #808000; padding: 8px; margin: 10px 0; font-size: 11px;">
+                <b>💡 Пасхалка:</b> Зажмите Ctrl+Alt+Delete при загрузке для секретного меню
+            </div>
+        </div>
     </div>
-    <div class="info-box">
-        <strong>Что нового:</strong>
-        <ul class="feature-list">
-            <li>Убраны критические баги</li>
-            <li>Оптимизирован код</li>
-            <li>Корректная работа с JSON</li>
-        </ul>
+
+    <!-- Окно о программе -->
+    <div class="window" id="aboutWindow" style="top: 150px; left: 400px; width: 400px; display: none;">
+        <div class="window-titlebar">
+            <div class="title">О программе ARDA Manager</div>
+            <div class="window-buttons">
+                <div class="window-button" onclick="minimizeWindow('aboutWindow')">_</div>
+                <div class="window-button" onclick="maximizeWindow('aboutWindow')">□</div>
+                <div class="window-button" onclick="closeWindow('aboutWindow')">×</div>
+            </div>
+        </div>
+        
+        <div class="window-content" style="text-align: center;">
+            <div style="font-size: 24px; color: #000080; margin: 10px 0;">ARDA</div>
+            <div>Academic Records Data Application</div>
+            <div style="margin: 15px 0;">Версия 6.1.0.2026</div>
+            <div>© 2025-2026 ARDA Software</div>
+            <div style="margin: 10px 0;">Все права защищены</div>
+            
+            <div style="background: #000; color: #0f0; padding: 10px; margin: 15px 0; font-family: 'Courier New';">
+                BUILD: 20260201_RETAIL<br>
+                KEY: 426F-6262-7920-4861-7264<br>
+                SERIAL: 0369-2026-ARDA
+            </div>
+            
+            <button class="button" onclick="showCredits()" style="margin: 10px 0;">Авторы</button>
+            <button class="button" onclick="checkForUpdate()">Проверить обновления</button>
+        </div>
     </div>
-    <div class="warning-box">
-        <strong>Важно:</strong> Редактирование JSON напрямую не поддерживается. Используйте меню уроков для изменения файлов.
-    </div>
-    <div class="download-grid">
-        <div class="download-card">
-            <h3>Скачать ARDA 6.1</h3>
-            <p>Полная версия для Windows</p>
-            <button class="btn" onclick="trackDownload()">Скачать</button>
+
+    <!-- Секретное окно -->
+    <div class="window" id="secretWindow" style="top: 200px; left: 300px; width: 350px; display: none;">
+        <div class="window-titlebar">
+            <div class="title">Секреты ARDA</div>
+            <div class="window-buttons">
+                <div class="window-button" onclick="minimizeWindow('secretWindow')">_</div>
+                <div class="window-button" onclick="maximizeWindow('secretWindow')">□</div>
+                <div class="window-button" onclick="closeWindow('secretWindow')">×</div>
+            </div>
+        </div>
+        
+        <div class="window-content">
+            <div style="text-align: center; margin-bottom: 15px;">
+                <b>Секретные функции:</b>
+            </div>
+            
+            <button class="button" onclick="enableGodMode()" style="width: 100%; margin: 5px 0;">Включить God Mode</button>
+            <button class="button" onclick="showEasterEgg('doom')" style="width: 100%; margin: 5px 0;">Секретная игра</button>
+            <button class="button" onclick="showEasterEgg('matrix')" style="width: 100%; margin: 5px 0;">Эффект матрицы</button>
+            <button class="button" onclick="showEasterEgg('rick')" style="width: 100%; margin: 5px 0;">Никогда не нажимай!</button>
+            
+            <div style="margin-top: 15px; font-size: 10px; color: #808080;">
+                💡 Подсказка: Попробуйте ввести "IDDQD" в любом окне
+            </div>
         </div>
     </div>
 </div>
 
-<!-- История версий -->
-<div class="card" style="margin-top:2rem;">
-    <div class="card-header"><h2>История версий ARDA</h2></div>
-    <div class="version-history">
-        <div class="v-6-1"><strong>ARDA 6.1</strong> – 01-02-2026: Убраны баги, оптимизирован код, корректная работа с JSON.</div>
-        <div class="v-6-0"><strong>ARDA 6.0</strong> – 01-01-2026: Основная функциональная версия, но содержала критический баг.</div>
-        <div class="v-5-5"><strong>ARDA 5.5</strong> – 11-12-2025: Исправлены ошибки, улучшена производительность.</div>
-        <div class="v-5-0"><strong>ARDA 5.0</strong> – 10-11-2025: Новые функции для расписаний и PDF.</div>
-        <div class="v-3-39"><strong>ARDA 3.39</strong> – 02-11-2025: Мелкие исправления интерфейса.</div>
-        <div class="v-3-3"><strong>ARDA 3.3</strong> – 31-10-2025: Оптимизация кода и совместимость.</div>
-        <div class="v-3-29"><strong>ARDA 3.29</strong> – 22-10-2025: Улучшена работа с учебными планами.</div>
-        <div class="v-3-2"><strong>ARDA 3.2</strong> – 18-10-2025: Мелкие багфиксы и стабильность.</div>
-        <div class="v-3-1"><strong>ARDA 3.1</strong> – 20-09-2025: Исправлены ошибки и улучшен интерфейс.</div>
-        <div class="v-3-0"><strong>ARDA 3.0</strong> – 06-09-2025: Большой апгрейд интерфейса и функционала.</div>
-        <div class="v-1-9"><strong>ARDA 1.9</strong> – 01-05-2025: Первая стабильная версия с базовым функционалом.</div>
+<!-- Панель задач -->
+<div class="taskbar">
+    <button class="start-button" onclick="toggleStartMenu()">
+        <span style="font-size: 14px;">●</span> Start
+    </button>
+    
+    <div style="display: flex; gap: 2px;">
+        <button class="button" style="font-size: 10px; padding: 2px 6px;" onclick="openWindow('downloadWindow')">ARDA</button>
+        <button class="button" style="font-size: 10px; padding: 2px 6px;" onclick="openNotepad()">Блокнот</button>
+        <button class="button" style="font-size: 10px; padding: 2px 6px;" onclick="openMinesweeper()">Сапер</button>
     </div>
+    
+    <div class="clock" id="clock">14:30</div>
 </div>
 
+<!-- Easter egg окно -->
+<div class="easter-egg" id="matrixEgg">
+    <div id="matrixText"></div>
+    <br>
+    <button class="button" onclick="hideMatrix()" style="background: #000; color: #0f0; border-color: #0f0;">ВЫХОД</button>
 </div>
-
-<!-- Сайдбар справа -->
-<div class="sidebar">
-
-<div class="sidebar-card">
-    <h3>Системные требования</h3>
-    <div class="requirements-grid">
-        <div class="requirement-item"><span class="requirement-label">ОС:</span><span class="requirement-value">Windows 10/11 x64</span></div>
-        <div class="requirement-item"><span class="requirement-label">Процессор:</span><span class="requirement-value">Любой современный</span></div>
-        <div class="requirement-item"><span class="requirement-label">ОЗУ:</span><span class="requirement-value">256 МБ минимум</span></div>
-        <div class="requirement-item"><span class="requirement-label">Место на диске:</span><span class="requirement-value">500 МБ</span></div>
-    </div>
-</div>
-
-<div class="sidebar-card">
-    <h3>Как установить</h3>
-    <ol style="margin-top:1rem; color:#475569;">
-        <li>Скачайте установочный файл</li>
-        <li>Запустите установщик</li>
-        <li>Следуйте инструкциям на экране</li>
-        <li>Запустите ARDA из меню Пуск</li>
-    </ol>
-</div>
-
-<div class="sidebar-card">
-    <h3>Поддержка</h3>
-    <p style="color:#64748b; margin-top:0.5rem; font-size:0.875rem;">
-        Для вопросов и поддержки: niyazyangerman@gmail.com
-    </p>
-    <a href="#" class="btn btn-secondary" style="margin-top:1rem;">Документация</a>
-</div>
-
-</div>
-
-</div>
-</div>
-
-<footer>
-<div class="container">
-<div class="footer-content">
-    <div>
-        <p style="font-weight:600;">ARDA Manager</p>
-        <p>© 2026 Academic Records Data Application. Все права защищены.</p>
-    </div>
-    <div>
-        <p>Посетителей сегодня: <span id="footerVisitors">0</span> | Онлайн: <span id="footerOnline">1</span></p>
-    </div>
-</div>
-</footer>
 
 <script>
-// Глобальные переменные для статистики
-let stats = {
-    totalDownloads: 0,
-    todayVisitors: 0,
-    uniqueVisitors: 0,
-    onlineNow: 1,
-    todayDate: '',
-    activities: []
-};
+// Глобальные переменные
+let downloadCount = 0;
+let windows = {};
+let godMode = false;
 
-// Генерация уникального ID для пользователя
-function generateVisitorId() {
-    return 'visitor_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now().toString(36);
-}
-
-// Получение текущей даты в формате YYYY-MM-DD
-function getTodayDate() {
-    const now = new Date();
-    return now.toISOString().split('T')[0];
-}
-
-// Загрузка статистики из localStorage
-function loadStats() {
-    const savedStats = localStorage.getItem('ardaStats');
-    const today = getTodayDate();
-    
-    if (savedStats) {
-        stats = JSON.parse(savedStats);
-        
-        // Сброс счетчика сегодняшних посетителей, если день изменился
-        if (stats.todayDate !== today) {
-            stats.todayVisitors = 0;
-            stats.todayDate = today;
-            // При смене дня оставляем только текущего пользователя онлайн
-            stats.onlineNow = 1;
-        }
-    } else {
-        // Начальные значения
-        stats = {
-            totalDownloads: 1250,
-            todayVisitors: 0,
-            uniqueVisitors: 0,
-            onlineNow: 1,
-            todayDate: today,
-            activities: []
-        };
+// Загрузка счетчика
+function loadCounter() {
+    const saved = localStorage.getItem('ardaDownloads');
+    if (saved) {
+        downloadCount = parseInt(saved);
     }
-    
-    // Проверяем, есть ли у пользователя ID
-    let visitorId = localStorage.getItem('ardaVisitorId');
-    let isNewVisitor = false;
-    
-    if (!visitorId) {
-        visitorId = generateVisitorId();
-        localStorage.setItem('ardaVisitorId', visitorId);
-        isNewVisitor = true;
-        stats.uniqueVisitors++;
-    }
-    
-    // Проверяем, был ли пользователь сегодня
-    const todayVisits = JSON.parse(localStorage.getItem('ardaTodayVisits') || '{}');
-    if (!todayVisits[visitorId]) {
-        stats.todayVisitors++;
-        todayVisits[visitorId] = true;
-        localStorage.setItem('ardaTodayVisits', JSON.stringify(todayVisits));
-        isNewVisitor = true;
-    }
-    
-    // Добавляем активность посещения
-    const activityTime = new Date().toLocaleTimeString('ru-RU', { 
-        hour: '2-digit', 
-        minute: '2-digit' 
-    });
-    
-    const activity = {
-        type: isNewVisitor ? 'new' : 'visit',
-        time: activityTime,
-        visitorId: visitorId.substring(0, 8) + '...'
-    };
-    
-    stats.activities.unshift(activity);
-    if (stats.activities.length > 10) {
-        stats.activities = stats.activities.slice(0, 10);
-    }
-    
-    // Сохраняем обновленную статистику
-    saveStats();
+    updateCounter();
 }
 
-// Сохранение статистики в localStorage
-function saveStats() {
-    localStorage.setItem('ardaStats', JSON.stringify(stats));
-}
-
-// Обновление отображения статистики
-function updateStatsDisplay() {
-    // Основные счетчики
-    document.getElementById('totalDownloads').textContent = stats.totalDownloads.toLocaleString('ru-RU');
-    document.getElementById('todayVisitors').textContent = stats.todayVisitors.toLocaleString('ru-RU');
-    document.getElementById('uniqueVisitors').textContent = stats.uniqueVisitors.toLocaleString('ru-RU');
-    document.getElementById('onlineNow').textContent = stats.onlineNow.toLocaleString('ru-RU');
-    
-    // Счетчик скачиваний
-    document.getElementById('counterNumber').textContent = stats.totalDownloads.toLocaleString('ru-RU');
-    
-    // Футер
-    document.getElementById('footerVisitors').textContent = stats.todayVisitors;
-    document.getElementById('footerOnline').textContent = stats.onlineNow;
-    
-    // Обновляем список активностей
-    updateActivitiesList();
-}
-
-// Обновление списка активностей
-function updateActivitiesList() {
-    const activityList = document.getElementById('activityList');
-    activityList.innerHTML = '';
-    
-    stats.activities.forEach(activity => {
-        const activityItem = document.createElement('div');
-        activityItem.className = 'activity-item';
-        
-        let iconClass = 'visit';
-        let iconText = 'V';
-        let activityText = 'Посетитель зашел на сайт';
-        
-        if (activity.type === 'download') {
-            iconClass = 'download';
-            iconText = 'D';
-            activityText = 'Пользователь скачал ARDA';
-        } else if (activity.type === 'new') {
-            iconClass = 'new';
-            iconText = 'N';
-            activityText = 'Новый посетитель на сайте';
-        }
-        
-        activityItem.innerHTML = `
-            <div class="activity-icon ${iconClass}">${iconText}</div>
-            <div class="activity-content">
-                <div>${activityText}</div>
-                <div class="activity-time">${activity.time} • ID: ${activity.visitorId}</div>
-            </div>
-        `;
-        
-        activityList.appendChild(activityItem);
-    });
-}
-
-// Трекер скачивания
-function trackDownload() {
-    // Увеличиваем счетчик скачиваний
-    stats.totalDownloads++;
-    
-    // Добавляем активность скачивания
-    const activityTime = new Date().toLocaleTimeString('ru-RU', { 
-        hour: '2-digit', 
-        minute: '2-digit' 
-    });
-    
-    const visitorId = localStorage.getItem('ardaVisitorId') || 'anonymous';
-    
-    const activity = {
-        type: 'download',
-        time: activityTime,
-        visitorId: visitorId.substring(0, 8) + '...'
-    };
-    
-    stats.activities.unshift(activity);
-    if (stats.activities.length > 10) {
-        stats.activities = stats.activities.slice(0, 10);
-    }
-    
-    // Сохраняем статистику
-    saveStats();
-    
-    // Обновляем отображение
-    updateStatsDisplay();
-    
-    // Анимация увеличения счетчика
-    const counterElement = document.getElementById('counterNumber');
-    counterElement.style.transform = 'scale(1.2)';
-    counterElement.style.color = '#10b981';
+// Обновление счетчика
+function updateCounter() {
+    const counter = document.getElementById('counter');
+    const formattedCount = downloadCount.toString().padStart(7, '0');
+    counter.textContent = formattedCount;
+    counter.classList.add('blink');
     
     setTimeout(() => {
-        counterElement.style.transform = 'scale(1)';
-        counterElement.style.color = 'white';
+        counter.classList.remove('blink');
     }, 300);
-    
-    // Перенаправляем на скачивание после небольшой задержки
-    setTimeout(() => {
-        window.open('https://disk.yandex.ru/d/KXwv7zIJhFlQTg', '_blank');
-    }, 500);
 }
 
-// Анимация счетчиков при загрузке
-function animateCounters() {
-    const counters = document.querySelectorAll('.stat-number');
-    
-    counters.forEach(counter => {
-        const finalValue = parseInt(counter.textContent.replace(/\s/g, ''));
-        const duration = 1500;
-        const startTime = Date.now();
-        const startValue = 0;
+// Управление окнами
+function openWindow(windowId) {
+    document.getElementById(windowId).style.display = 'block';
+    bringToFront(windowId);
+}
+
+function closeWindow(windowId) {
+    document.getElementById(windowId).style.display = 'none';
+}
+
+function minimizeWindow(windowId) {
+    const window = document.getElementById(windowId);
+    window.style.display = 'none';
+    // В реальности добавить иконку в панель задач
+}
+
+function maximizeWindow(windowId) {
+    const window = document.getElementById(windowId);
+    window.style.width = '90%';
+    window.style.height = '80%';
+    window.style.top = '50px';
+    window.style.left = '50px';
+}
+
+function bringToFront(windowId) {
+    const windows = document.querySelectorAll('.window');
+    let maxZ = 100;
+    windows.forEach(w => {
+        const z = parseInt(w.style.zIndex) || 100;
+        if (z > maxZ) maxZ = z;
+    });
+    document.getElementById(windowId).style.zIndex = maxZ + 1;
+}
+
+// Перетаскивание окон
+document.addEventListener('mousedown', function(e) {
+    if (e.target.closest('.window-titlebar')) {
+        const window = e.target.closest('.window');
+        const offsetX = e.clientX - window.offsetLeft;
+        const offsetY = e.clientY - window.offsetTop;
         
-        function update() {
-            const elapsed = Date.now() - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easeProgress = 1 - Math.pow(1 - progress, 3); // Кубическое замедление
-            const currentValue = Math.floor(startValue + (finalValue - startValue) * easeProgress);
-            
-            counter.textContent = currentValue.toLocaleString('ru-RU');
-            
-            if (progress < 1) {
-                requestAnimationFrame(update);
-            }
+        function mouseMoveHandler(e) {
+            window.style.left = (e.clientX - offsetX) + 'px';
+            window.style.top = (e.clientY - offsetY) + 'px';
         }
         
-        requestAnimationFrame(update);
-    });
-}
-
-// Инициализация при загрузке страницы
-document.addEventListener('DOMContentLoaded', function() {
-    // Загружаем статистику и отслеживаем посетителя
-    loadStats();
-    
-    // Обновляем отображение
-    updateStatsDisplay();
-    
-    // Запускаем анимацию счетчиков
-    setTimeout(animateCounters, 500);
-    
-    // Добавляем клик на блоке счетчика
-    document.getElementById('downloadCounter').addEventListener('click', trackDownload);
+        function mouseUpHandler() {
+            document.removeEventListener('mousemove', mouseMoveHandler);
+            document.removeEventListener('mouseup', mouseUpHandler);
+        }
+        
+        document.addEventListener('mousemove', mouseMoveHandler);
+        document.addEventListener('mouseup', mouseUpHandler);
+        bringToFront(window.id);
+    }
 });
 
-// Обработка ухода пользователя со страницы
-window.addEventListener('beforeunload', function() {
-    // Уменьшаем счетчик онлайн пользователей
-    if (stats.onlineNow > 0) {
-        stats.onlineNow--;
+// Функция скачивания
+function startDownload() {
+    const btn = document.querySelector('#downloadWindow .button');
+    const originalText = btn.innerHTML;
+    
+    btn.innerHTML = '⏳ ПОДГОТОВКА...';
+    btn.disabled = true;
+    
+    // Показать прогресс бар
+    document.getElementById('progressBar').style.display = 'block';
+    document.getElementById('progressText').style.display = 'block';
+    
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress > 100) progress = 100;
+        
+        document.getElementById('progressFill').style.width = progress + '%';
+        document.getElementById('progressText').textContent = 
+            `Загрузка: ${Math.round(progress)}% (${Math.round(progress * 24576)} / 2457600 байт)`;
+        
+        if (progress >= 100) {
+            clearInterval(interval);
+            
+            // Увеличить счетчик
+            downloadCount++;
+            localStorage.setItem('ardaDownloads', downloadCount.toString());
+            updateCounter();
+            
+            // Показать сообщение
+            setTimeout(() => {
+                showMessage('Загрузка завершена', 
+                    'Файл ARDA_6.1.exe успешно загружен!\n\n' +
+                    'Расположение: C:\\Downloads\\ARDA_6.1.exe\n' +
+                    'Размер: 2.4 MB\n' +
+                    'Статус: Готов к установке\n\n' +
+                    (godMode ? '🔓 GOD MODE: Разблокированы все функции!' : ''));
+                
+                // Ссылка на скачивание
+                setTimeout(() => {
+                    window.open('https://disk.yandex.ru/d/KXwv7zIJhFlQTg', '_blank');
+                }, 1000);
+                
+                // Сброс
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    document.getElementById('progressBar').style.display = 'none';
+                    document.getElementById('progressText').style.display = 'none';
+                    document.getElementById('progressFill').style.width = '0%';
+                }, 2000);
+            }, 500);
+        }
+    }, 100);
+}
+
+// Пасхалки
+function enableGodMode() {
+    godMode = true;
+    showMessage('GOD MODE АКТИВИРОВАН', 
+        '🔓 Все секретные функции разблокированы!\n\n' +
+        'Доступно:\n' +
+        '• Неограниченные загрузки\n' +
+        '• Скрытые уровни\n' +
+        '• Секретные коды\n' +
+        '• Особые возможности\n\n' +
+        'Код: IDDQD');
+}
+
+function showMatrix() {
+    const egg = document.getElementById('matrixEgg');
+    const text = document.getElementById('matrixText');
+    egg.style.display = 'block';
+    
+    const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+    let matrixText = '';
+    
+    for (let i = 0; i < 100; i++) {
+        matrixText += chars.charAt(Math.floor(Math.random() * chars.length));
+        if (i % 20 === 19) matrixText += '<br>';
     }
-    saveStats();
+    
+    text.innerHTML = matrixText;
+    
+    // Анимация
+    setInterval(() => {
+        let newText = '';
+        for (let i = 0; i < 100; i++) {
+            newText += chars.charAt(Math.floor(Math.random() * chars.length));
+            if (i % 20 === 19) newText += '<br>';
+        }
+        text.innerHTML = newText;
+    }, 100);
+}
+
+function hideMatrix() {
+    document.getElementById('matrixEgg').style.display = 'none';
+}
+
+function formatC() {
+    if (confirm('ВНИМАНИЕ!\n\nВы действительно хотите отформатировать диск C:?\n\nВсе данные будут потеряны!')) {
+        showMessage('Форматирование диска C:', 
+            '█▒▒▒▒▒▒▒▒▒ 10%\n\n' +
+            'Ошибка! Доступ запрещен.\n' +
+            'Требуются права администратора.\n\n' +
+            '💡 Это была шутка. Диск C: в безопасности.');
+    }
+}
+
+function showEasterEgg(type) {
+    switch(type) {
+        case 'doom':
+            showMessage('Секретная игра', 
+                'IDDQD - God Mode\n' +
+                'IDKFA - Все оружие и ключи\n' +
+                'IDCLIP - No-clip режим\n\n' +
+                '🎮 DOOM (1993) forever!');
+            break;
+        case 'rick':
+            // Rickroll в стиле Windows 95
+            const videoWindow = window.open('', 'rick', 'width=400,height=300');
+            videoWindow.document.write(`
+                <html>
+                <head><title>Media Player</title></head>
+                <body style="background:#000; margin:0;">
+                <div style="color:#0f0; font-family:Courier New; padding:10px;">
+                LOADING VIDEO.EXE...<br><br>
+                ██████████ 100%<br><br>
+                PLAYING: NEVER_GONNA_GIVE_YOU_UP.avi
+                </div>
+                <iframe width="400" height="225" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0"></iframe>
+                </body></html>
+            `);
+            break;
+        case 'matrix':
+            showMatrix();
+            break;
+    }
+}
+
+// Вспомогательные функции
+function showMessage(title, text) {
+    const message = document.createElement('div');
+    message.className = 'message-box';
+    message.innerHTML = `
+        <div class="message-title">${title}</div>
+        <div class="message-content" style="white-space: pre-line;">${text}</div>
+        <div class="message-buttons">
+            <button class="button" onclick="this.parentElement.parentElement.remove()">OK</button>
+        </div>
+    `;
+    document.body.appendChild(message);
+}
+
+function showCredits() {
+    showMessage('Авторы ARDA Manager', 
+        'Разработка и дизайн:\n' +
+        '• Niyaz Yangerman\n\n' +
+        'Тестирование:\n' +
+        '• Beta Testers Group\n\n' +
+        'Особая благодарность:\n' +
+        '• Всем пользователям 2025-2026\n' +
+        '• Сообществу разработчиков\n\n' +
+        '© 2025-2026 ARDA Software');
+}
+
+function checkForUpdate() {
+    showMessage('Проверка обновлений', 
+        'Подключение к серверу обновлений...\n' +
+        '██▒▒▒▒▒▒▒▒ 20%\n\n' +
+        'Статус: ARDA 6.1 - последняя версия\n' +
+        'Следующее обновление: Q2 2026\n\n' +
+        'Ваша версия актуальна!');
+}
+
+function openNotepad() {
+    const notepad = window.open('', 'notepad', 'width=400,height=300');
+    notepad.document.write(`
+        <html>
+        <head><title>Блокнот</title></head>
+        <body style="font-family:'MS Sans Serif'; margin:10px;">
+        <textarea style="width:100%; height:250px; font-family:'Courier New';">
+ARDA Manager 6.1 - Заметки
+===========================
+Дата: ${new Date().toLocaleDateString()}
+
+Функции:
+• Управление учебными записями
+• Работа с JSON конфигурациями
+• Генерация отчетов
+• Импорт/экспорт данных
+
+Секретный код: 0369-2026-ARDA
+        </textarea>
+        </body></html>
+    `);
+}
+
+function openMinesweeper() {
+    showMessage('Сапер', 
+        '💣 Бум! Вы наступили на мину!\n\n' +
+        'Игра окончена.\n' +
+        'Счет: 0 очков\n\n' +
+        'Попробуйте еще раз?');
+}
+
+// Обработчики клавиш
+document.addEventListener('keydown', function(e) {
+    // Ctrl+Alt+Delete
+    if (e.ctrlKey && e.altKey && e.key === 'Delete') {
+        showMessage('Windows Security', 
+            'ARDA Manager 6.1 - Диспетчер задач\n\n' +
+            'Запущенные процессы:\n' +
+            '• ARDA_6.1.exe - 2.4 MB\n' +
+            '• Download Manager - 0.8 MB\n' +
+            '• Counter Service - 0.3 MB\n\n' +
+            (godMode ? '• GODMODE.EXE - 999 MB (СИСТЕМНЫЙ)\n\n' : '\n') +
+            'Выберите процесс для завершения...');
+    }
+    
+    // IDDQD
+    if (e.target === document.body) {
+        const code = e.key.toUpperCase();
+        if (code === 'I') checkCode('I');
+    }
+});
+
+let cheatCode = '';
+function checkCode(key) {
+    cheatCode += key;
+    if (cheatCode.includes('IDDQD')) {
+        enableGodMode();
+        cheatCode = '';
+    }
+    if (cheatCode.length > 10) cheatCode = '';
+}
+
+// Часы
+function updateClock() {
+    document.getElementById('clock').textContent = 
+        new Date().toLocaleTimeString('ru-RU', {hour: '2-digit', minute:'2-digit'});
+}
+
+// Инициализация
+document.addEventListener('DOMContentLoaded', function() {
+    loadCounter();
+    updateClock();
+    setInterval(updateClock, 60000);
+    
+    // Сделать все окна перетаскиваемыми
+    document.querySelectorAll('.window').forEach(window => {
+        window.addEventListener('mousedown', () => bringToFront(window.id));
+    });
+    
+    // Секрет: тройной клик по счетчику
+    let clickCount = 0;
+    document.getElementById('counter').addEventListener('click', function() {
+        clickCount++;
+        if (clickCount >= 3) {
+            showMessage('Секретный счетчик', 
+                'Вы активировали режим отладки!\n\n' +
+                'Реальное число загрузок: ' + downloadCount + '\n' +
+                'God Mode: ' + (godMode ? 'АКТИВЕН' : 'НЕ АКТИВЕН') + '\n' +
+                'Сессия: ' + new Date().toLocaleString());
+            clickCount = 0;
+        }
+        setTimeout(() => { clickCount = 0; }, 1000);
+    });
 });
 </script>
-
 </body>
 </html>
