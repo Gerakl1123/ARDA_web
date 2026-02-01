@@ -238,7 +238,7 @@ footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
 // Функция для получения текущего счетчика из localStorage
 function getCounter() {
     const counter = localStorage.getItem('ardaDownloadCounter');
-    return counter ? parseInt(counter) : 1250; // Начинаем с 1250 как пример
+    return counter ? parseInt(counter) : 0; // Начинаем с 1250 как пример
 }
 
 // Функция для обновления счетчика на странице
