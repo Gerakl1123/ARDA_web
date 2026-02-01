@@ -179,7 +179,7 @@ footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
     
     <div class="stat-card">
         <div class="stat-label">Сейчас на сайте</div>
-        <div class="stat-number today" id="onlineNow">0</div>
+        <div class="stat-number today" id="onlineNow">1</div>
         <div class="stat-subtitle">активных пользователей</div>
     </div>
 </div>
@@ -188,7 +188,7 @@ footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
 <div class="card">
     <div class="card-header">
         <h2>Последняя активность</h2>
-        <span class="status-badge status-stable">LIVE</span>
+        <span class="status-badge status-stable">REAL-TIME</span>
     </div>
     <div class="activity-list" id="activityList">
         <!-- Сюда будут добавляться активности динамически -->
@@ -297,7 +297,7 @@ footer {background:#1e293b; color:white; padding:2rem 0; margin-top:3rem;}
         <p>© 2026 Academic Records Data Application. Все права защищены.</p>
     </div>
     <div>
-        <p>Посетителей сегодня: <span id="footerVisitors">0</span> | Онлайн: <span id="footerOnline">0</span></p>
+        <p>Посетителей сегодня: <span id="footerVisitors">0</span> | Онлайн: <span id="footerOnline">1</span></p>
     </div>
 </div>
 </footer>
@@ -308,7 +308,7 @@ let stats = {
     totalDownloads: 0,
     todayVisitors: 0,
     uniqueVisitors: 0,
-    onlineNow: 0,
+    onlineNow: 1,
     todayDate: '',
     activities: []
 };
@@ -336,15 +336,16 @@ function loadStats() {
         if (stats.todayDate !== today) {
             stats.todayVisitors = 0;
             stats.todayDate = today;
-            stats.onlineNow = 0;
+            // При смене дня оставляем только текущего пользователя онлайн
+            stats.onlineNow = 1;
         }
     } else {
         // Начальные значения
         stats = {
-            totalDownloads: 0,
+            totalDownloads: 1250,
             todayVisitors: 0,
             uniqueVisitors: 0,
-            onlineNow: 0,
+            onlineNow: 1,
             todayDate: today,
             activities: []
         };
@@ -370,10 +371,7 @@ function loadStats() {
         isNewVisitor = true;
     }
     
-    // Увеличиваем счетчик онлайн пользователей
-    stats.onlineNow++;
-    
-    // Добавляем активность
+    // Добавляем активность посещения
     const activityTime = new Date().toLocaleTimeString('ru-RU', { 
         hour: '2-digit', 
         minute: '2-digit' 
@@ -392,8 +390,6 @@ function loadStats() {
     
     // Сохраняем обновленную статистику
     saveStats();
-    
-    return { visitorId, isNewVisitor };
 }
 
 // Сохранение статистики в localStorage
@@ -501,38 +497,6 @@ function trackDownload() {
     }, 500);
 }
 
-// Симуляция онлайн пользователей (обновляется каждую минуту)
-function simulateOnlineUsers() {
-    // Случайные колебания онлайн пользователей
-    const change = Math.floor(Math.random() * 3) - 1; // -1, 0, или 1
-    stats.onlineNow = Math.max(1, stats.onlineNow + change);
-    
-    // Периодически добавляем новые активности
-    if (Math.random() < 0.3 && stats.activities.length > 0) {
-        const activityTime = new Date().toLocaleTimeString('ru-RU', { 
-            hour: '2-digit', 
-            minute: '2-digit' 
-        });
-        
-        const activityTypes = ['visit', 'new', 'download'];
-        const randomType = activityTypes[Math.floor(Math.random() * activityTypes.length)];
-        
-        const activity = {
-            type: randomType,
-            time: activityTime,
-            visitorId: 'visitor_' + Math.random().toString(36).substr(2, 6)
-        };
-        
-        stats.activities.unshift(activity);
-        if (stats.activities.length > 10) {
-            stats.activities = stats.activities.slice(0, 10);
-        }
-    }
-    
-    saveStats();
-    updateStatsDisplay();
-}
-
 // Анимация счетчиков при загрузке
 function animateCounters() {
     const counters = document.querySelectorAll('.stat-number');
@@ -573,38 +537,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Добавляем клик на блоке счетчика
     document.getElementById('downloadCounter').addEventListener('click', trackDownload);
-    
-    // Запускаем симуляцию онлайн пользователей
-    setInterval(simulateOnlineUsers, 60000); // Каждую минуту
-    
-    // Обновляем время онлайн пользователя
-    setInterval(() => {
-        // Эта функция поддерживает сессию пользователя
-        const onlineUsers = JSON.parse(localStorage.getItem('ardaOnlineUsers') || '{}');
-        const visitorId = localStorage.getItem('ardaVisitorId');
-        
-        if (visitorId) {
-            onlineUsers[visitorId] = Date.now();
-            localStorage.setItem('ardaOnlineUsers', JSON.stringify(onlineUsers));
-        }
-    }, 30000); // Каждые 30 секунд
-    
-    // Очистка старых онлайн пользователей (тех, кто не активен более 5 минут)
-    setInterval(() => {
-        const onlineUsers = JSON.parse(localStorage.getItem('ardaOnlineUsers') || '{}');
-        const fiveMinutesAgo = Date.now() - 5 * 60 * 1000;
-        let activeCount = 0;
-        
-        Object.keys(onlineUsers).forEach(key => {
-            if (onlineUsers[key] > fiveMinutesAgo) {
-                activeCount++;
-            }
-        });
-        
-        stats.onlineNow = Math.max(1, activeCount);
-        saveStats();
-        updateStatsDisplay();
-    }, 60000); // Каждую минуту
 });
 
 // Обработка ухода пользователя со страницы
